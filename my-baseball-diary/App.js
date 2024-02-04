@@ -1,9 +1,11 @@
 import React, { useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
-import { useAssets } from 'expo-asset';
 import { Text, View } from 'react-native';
+import { useAssets } from 'expo-asset';
 import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import Tabs from './navigation/Tabs';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,9 +23,9 @@ export default function App() {
     return null;
   }
 
-  return (
-    <View onLayout={onLayoutRootView}>
-      <Text>We are done Loading !</Text>
-    </View>
-  );
+  return(
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Tabs />
+      </NavigationContainer>
+    )
 }
