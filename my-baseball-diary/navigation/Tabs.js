@@ -1,11 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../sreens/Home";
-import Diary from "../sreens/Diary";
-import MyPage from "../sreens/MyPage";
+import Home from "../srceens/Home";
+import DiaryList from "../srceens/DiaryList";
+import MyPage from "../srceens/MyPage";
 import { useColorScheme } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { GRAY100, GRAY500, GRAY700, BLACK } from "../colors";
+import { WHITE, GRAY100, GRAY500, GRAY700, BLACK } from "../colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,24 +25,24 @@ const Tabs = () => {
         headerTitleStyle: {
             color: isDark ? "white" : BLACK,
         },
-        headerShown: false,
+        headerShadowVisible: false,
         tabBarShowLabel: false,
-        // tabBarLabelStyle: {
-        //     marginTop: -4,
-        //     fontSize: 12,
-        // },
         }}>
-            <Tab.Screen name="HOME" component={Home}  options={{
+            <Tab.Screen name="Home" component={Home}  options={{
+                headerShown: false,
                 tabBarIcon: ({focused, color, size}) => {
                     return <Ionicons name="home" color={color} size={size} />
                 }
             }}/>
-            <Tab.Screen name="DIRAY" component={Diary} options={{
+            <Tab.Screen name="DiaryList" component={DiaryList} options={{
+                title: "2023년 10월 16일",
+                headerTitleAlign: "center",
                 tabBarIcon: ({focused, color, size}) => {
                     return <Ionicons name="book" color={color} size={size} />
                 }
             }}/>
-            <Tab.Screen name="MYPAGE" component={MyPage} options={{
+            <Tab.Screen name="MyPage" component={MyPage} options={{
+                headerShown: false,
                 tabBarIcon: ({focused, color, size}) => {
                     return <Ionicons name="person" color={color} size={size} />
                 }

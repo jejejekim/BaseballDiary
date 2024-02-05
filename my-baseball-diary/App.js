@@ -7,6 +7,8 @@ import { useFonts } from 'expo-font';
 import { useColorScheme } from 'react-native';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import Tabs from './navigation/Tabs';
+import Root from './navigation/Root';
+import Stack from './navigation/Stack';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,8 +28,9 @@ export default function App() {
   }
 
   return(
-      <NavigationContainer onReady={onLayoutRootView} theme={isDark ? DarkTheme : DefaultTheme}>
-        <Tabs />
-      </NavigationContainer>
+    <NavigationContainer onReady={onLayoutRootView} theme={isDark ? DarkTheme : DefaultTheme}>
+      <Root />
+      {/* <Stack /> */}
+    </NavigationContainer>
     )
 }

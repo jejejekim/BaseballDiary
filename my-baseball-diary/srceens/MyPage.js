@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Diary = () =>{
+const MyPage = () =>(
     <View style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-        <Text>Diary</Text>
+        <Text>MyPage</Text>
     </View>
-};
+);
 
-export default Diary;
+export default MyPage;
