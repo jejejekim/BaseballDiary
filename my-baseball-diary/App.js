@@ -9,6 +9,8 @@ import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/
 import Tabs from './navigation/Tabs';
 import Root from './navigation/Root';
 import Stack from './navigation/Stack';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from './styled';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,9 +30,10 @@ export default function App() {
   }
 
   return(
-    <NavigationContainer onReady={onLayoutRootView} theme={isDark ? DarkTheme : DefaultTheme}>
-      <Root />
-      {/* <Stack /> */}
-    </NavigationContainer>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <NavigationContainer onReady={onLayoutRootView} theme={isDark ? DarkTheme : DefaultTheme}>
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
     )
 }
