@@ -1,6 +1,6 @@
 const colors = {
-  WHITE30: "#ffffff",
-  WHITE80: "#ffffff",
+  WHITE30: "rgba(255, 255, 255, 0.3)",
+  WHITE80: "rgba(255, 255, 255, 0.8)",
   WHITE: "#ffffff",
 
   GRAYBG: "#EDECF1",

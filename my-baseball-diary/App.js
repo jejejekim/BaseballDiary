@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import { useAssets } from "expo-asset";
@@ -20,14 +21,14 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    PretnedardB: require("./assets/fonts/Pretendard-Bold.ttf"),
-    PretnedardR: require("./assets/fonts/Pretendard-Regular.ttf"),
-    PretnedardM: require("./assets/fonts/Pretendard-Medium.ttf"),
-    Audio: require("./assets/fonts/Audiowide-Regular.ttf"),
+    PretnedardB: require("./assets/Fonts/Pretendard-Bold.ttf"),
+    PretnedardR: require("./assets/Fonts/Pretendard-Regular.ttf"),
+    PretnedardM: require("./assets/Fonts/Pretendard-Medium.ttf"),
+    Audio: require("./assets/Fonts/Audiowide-Regular.ttf"),
     // (Ionicons.font)
   });
   const [assets] = useAssets([
-    require("./assets/images/Field.svg"),
+    require("./assets/Images/FieldImg.png"),
     /* require('path/to/other.png') */
   ]);
   const isDark = useColorScheme() === "dark"; //다크모드 state

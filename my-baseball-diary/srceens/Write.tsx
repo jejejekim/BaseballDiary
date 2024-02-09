@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
+import fonts from "../fonts";
 import { useState } from "react";
 import { Alert } from "react-native";
 
