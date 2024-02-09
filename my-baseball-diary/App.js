@@ -1,22 +1,33 @@
-import React, { useCallback } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import { Ionicons } from '@expo/vector-icons';
-import { Text, View } from 'react-native';
-import { useAssets } from 'expo-asset';
-import { useFonts } from 'expo-font';
-import { useColorScheme } from 'react-native';
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
-import Tabs from './navigation/Tabs';
-import Root from './navigation/Root';
-import Stack from './navigation/Stack';
-import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from './styled';
+import React, { useCallback } from "react";
+import * as SplashScreen from "expo-splash-screen";
+import { Ionicons } from "@expo/vector-icons";
+import { Text, View } from "react-native";
+import { useAssets } from "expo-asset";
+import { useFonts } from "expo-font";
+import { useColorScheme } from "react-native";
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from "@react-navigation/native";
+import Tabs from "./navigation/Tabs";
+import Root from "./navigation/Root";
+import Stack from "./navigation/Stack";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./styled";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded] = useFonts(Ionicons.font);
+  const [fontsLoaded] = useFonts({
+    PretnedardB: require("./assets/fonts/Pretendard-Bold.ttf"),
+    PretnedardR: require("./assets/fonts/Pretendard-Regular.ttf"),
+    PretnedardM: require("./assets/fonts/Pretendard-Medium.ttf"),
+    Audio: require("./assets/fonts/Audiowide-Regular.ttf"),
+    // (Ionicons.font)
+  });
   const [assets] = useAssets([
+    require("./assets/images/Field.svg"),
     /* require('path/to/other.png') */
   ]);
   const isDark = useColorScheme() === "dark"; //다크모드 state
@@ -29,11 +40,14 @@ export default function App() {
     return null;
   }
 
-  return(
+  return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <NavigationContainer onReady={onLayoutRootView} theme={isDark ? DarkTheme : DefaultTheme}>
+      <NavigationContainer
+        onReady={onLayoutRootView}
+        theme={isDark ? DarkTheme : DefaultTheme}
+      >
         <Root />
       </NavigationContainer>
     </ThemeProvider>
-    )
+  );
 }
