@@ -21,9 +21,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    PretnedardB: require("./assets/Fonts/Pretendard-Bold.ttf"),
-    PretnedardR: require("./assets/Fonts/Pretendard-Regular.ttf"),
-    PretnedardM: require("./assets/Fonts/Pretendard-Medium.ttf"),
+    PretendardB: require("./assets/Fonts/Pretendard-Bold.ttf"),
+    PretendardR: require("./assets/Fonts/Pretendard-Regular.ttf"),
+    PretendardM: require("./assets/Fonts/Pretendard-Medium.ttf"),
     Audio: require("./assets/Fonts/Audiowide-Regular.ttf"),
     // (Ionicons.font)
   });

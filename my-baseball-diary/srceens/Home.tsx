@@ -29,7 +29,7 @@ const Title = styled.Text`
   padding-top: 30px; */
   color: ${colors.WHITE};
   font-size: 56px;
-  margin-bottom: 100px;
+  margin-bottom: 32px;
   font-family: Audio;
 `;
 
