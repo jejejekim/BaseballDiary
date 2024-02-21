@@ -8,6 +8,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
 import ResultItem from "../components/ResultItem";
 import ScoreBoardItem from "../components/ScoreBoradItem";
+import LineUpBoardItem from "../components/LineUpBoardItem";
+import NoteItem from "../components/NoteItem";
 
 // const TextInput = styled.TextInput`
 //   background-color: ${colors.GRAYBG};
@@ -76,6 +78,10 @@ const Divder = styled.View`
   background-color: ${colors.GRAYBG};
 `;
 
+const DiaryView = styled.View`
+  margin-top: 16px;
+`;
+
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
 const Write = ({ navigation: { goBack } }) => {
@@ -111,6 +117,10 @@ const Write = ({ navigation: { goBack } }) => {
         <ScoreBoardItem />
       </ScoreBoard>
       <Divder />
+      <DiaryView>
+        <LineUpBoardItem />
+        <NoteItem />
+      </DiaryView>
     </View>
     // <View>
     //   <Emotions>

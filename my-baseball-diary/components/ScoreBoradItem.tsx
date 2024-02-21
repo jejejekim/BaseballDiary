@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Dimensions } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
 const containerWidth = screenWidth - 40;
@@ -16,11 +16,11 @@ const ScoreHeader = styled.View`
 
 const TeamHeader = styled.Text`
   width: 40px;
+  text-align: center;
   font-family: PretendardR;
   font-size: 12px;
   color: ${colors.GRAY600};
-  margin-left: 8px;
-  text-align: center;
+  margin-right: 8px;
 `;
 
 const InningHeader = styled.View`
@@ -35,6 +35,7 @@ const Inning = styled.Text`
   font-size: 12px;
   color: ${colors.GRAY600};
   text-align: center;
+  justify-content: center;
 `;
 
 const AwayHeader = styled.View`
@@ -50,10 +51,28 @@ const HomeHeader = styled.View`
   justify-content: space-between;
 `;
 
-const BoxItem = styled.Text`
+const ItemContainer = styled.View`
+  width: ${inningWidth}px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const TeamItem = styled.Text`
+  width: 40px;
   background-color: ${colors.GRAYBG};
   text-align: center;
   justify-content: center;
+  padding: 4px 8px;
+  font-family: PretendardR;
+  font-size: 12px;
+  color: ${colors.GRAY700};
+  border-radius: 4px;
+`;
+
+const BoxItem = styled.Text`
+  width: 22px;
+  background-color: ${colors.GRAYBG};
+  text-align: center;
   padding: 4px 8px;
   font-family: PretendardR;
   font-size: 12px;
@@ -85,34 +104,38 @@ const ScoreBoardItem = () => {
       </ScoreHeader>
       <ScoreContents>
         <AwayHeader>
-          <BoxItem>롯데</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>1</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>1</BoxItem>
-          <BoxItem>2</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>3</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>-</BoxItem>
-          <BoxItem>-</BoxItem>
-          <BoxItem>-</BoxItem>
+          <TeamItem>롯데</TeamItem>
+          <ItemContainer>
+            <BoxItem>0</BoxItem>
+            <BoxItem>1</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>1</BoxItem>
+            <BoxItem>2</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>3</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>-</BoxItem>
+            <BoxItem>-</BoxItem>
+            <BoxItem>-</BoxItem>
+          </ItemContainer>
         </AwayHeader>
         <HomeHeader>
-          <BoxItem>한화</BoxItem>
-          <BoxItem>1</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>1</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>0</BoxItem>
-          <BoxItem>-</BoxItem>
-          <BoxItem>-</BoxItem>
-          <BoxItem>-</BoxItem>
+          <TeamItem>한화</TeamItem>
+          <ItemContainer>
+            <BoxItem>1</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>1</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>0</BoxItem>
+            <BoxItem>-</BoxItem>
+            <BoxItem>-</BoxItem>
+            <BoxItem>-</BoxItem>
+          </ItemContainer>
         </HomeHeader>
       </ScoreContents>
     </>
