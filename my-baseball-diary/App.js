@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,8 +16,20 @@ import Root from "./navigation/Root";
 import Stack from "./navigation/Stack";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styled";
+import Realm from "realm";
+import { DBContext } from "./context";
 
 SplashScreen.preventAutoHideAsync();
+
+const DiarySchema = {
+  name: "Diary",
+  properties: {
+    _id: "int",
+    emotion: "string",
+    message: "string",
+  },
+  primaryKey: "_id",
+};
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,22 +45,44 @@ export default function App() {
   ]);
   const isDark = useColorScheme() === "dark"; //다크모드 state
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded && assets) await SplashScreen.hideAsync();
-  }, [fontsLoaded, assets]);
+  //realm load
+  const [ready, setReady] = useState(false);
+  const [realm, setRealm] = useState(null); //realm 커넥션을 만들기 위한 state
+  async function startLaoding() {
+    try {
+      const db = await Realm.open({
+        path: "diaryDB",
+        schema: [DiarySchema],
+      });
+      setRealm(db);
+    } finally {
+      setReady(true);
+    }
+    // console.log("start Loading");
+  }
 
-  if (!fontsLoaded || !assets) {
+  useEffect(() => {
+    startLaoding();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded && assets && ready) await SplashScreen.hideAsync();
+  }, [fontsLoaded, assets, ready]);
+
+  if (!fontsLoaded || !assets || !ready) {
     return null;
   }
 
   return (
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <NavigationContainer
-        onReady={onLayoutRootView}
-        theme={isDark ? DarkTheme : DefaultTheme}
-      >
-        <Root />
-      </NavigationContainer>
-    </ThemeProvider>
+    <DBContext.Provider value={realm}>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <NavigationContainer
+          onReady={onLayoutRootView}
+          theme={isDark ? DarkTheme : DefaultTheme}
+        >
+          <Root />
+        </NavigationContainer>
+      </ThemeProvider>
+    </DBContext.Provider>
   );
 }

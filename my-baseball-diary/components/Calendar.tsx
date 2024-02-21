@@ -53,7 +53,7 @@ const DayContainer = styled.FlatList`
 
 const DayText = styled.Text`
   color: ${colors.WHITE};
-  width: ${itemSize};
+  width: ${itemSize}px;
   height: fit-content;
   font-family: PretendardR;
   font-size: 12px;
@@ -72,7 +72,7 @@ const Calendar = () => {
     setSelectedDay(v);
   };
 
-  const board = renderCalendarBoard(selectedDay, handleSelectDate);
+  const board = renderCalendarBoard(selectedDay, handleSelectDate); //renderCalendarBoard 함수에서 보드 받아오기
 
   const dayList = ["일", "월", "화", "수", "목", "금", "토"]; //요일 배열
 

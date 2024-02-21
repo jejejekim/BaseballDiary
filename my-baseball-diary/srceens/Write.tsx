@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
-import fonts from "../fonts";
 import { useState } from "react";
 import { Alert } from "react-native";
+import { useDB } from "../context";
 
 const View = styled.View`
   flex: 1;
@@ -58,7 +58,8 @@ const EmotionText = styled.Text`
 
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
-const Write = () => {
+const Write = ({ navigation: { goBack } }) => {
+  const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
   const [selectedEmotion, setEmotion] = useState(null); //감정 이모지 저장
   const [feelings, setFeelings] = useState(""); //감정 텍스트 저장
   const onChangeText = (text) => setFeelings(text); //인풋 텍스트 내용이 변경되면 위에 저장
@@ -68,6 +69,20 @@ const Write = () => {
     if (feelings === "" || selectedEmotion == null) {
       return Alert.alert("Please complete form.");
     }
+    realm.write(() => {
+      const feeling = realm.create(
+        "Diary", //잤던 스키마에 맞춰서 value 넣어주기
+        {
+          _id: Date.now(),
+          emotion: selectedEmotion,
+          message: feelings,
+        }
+      );
+      console.log(feeling);
+    });
+    setEmotion(null); //제출하고 나면 비워줘야됨
+    setFeelings("");
+    goBack();
   };
   return (
     <View>

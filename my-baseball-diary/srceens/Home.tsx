@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
 import Calendar from "../components/Calendar";
+import { useDB } from "../context";
 
 const View = styled.View`
   flex: 1;
@@ -19,14 +20,11 @@ const Container = styled.View`
 
 const Field = styled.Image`
   flex: 1;
-  /* position: relative; */
   right: -25px;
   bottom: -102px;
 `;
 
 const Title = styled.Text`
-  /* padding: 0px 20px;
-  padding-top: 30px; */
   color: ${colors.WHITE};
   font-size: 56px;
   margin-bottom: 32px;
@@ -48,18 +46,22 @@ const BtnText = styled.Text`
   color: ${colors.GRAY800};
 `;
 
-const Home = ({ navigation: { navigate } }) => (
-  <View>
-    <Title>Let's Playball</Title>
-    <Calendar />
-    {/* <Field
+const Home = ({ navigation: { navigate } }) => {
+  const realm = useDB();
+  // const [feelings, setFeelings] = useState(realm.object("Diary")); //데이터 가져오기 //fillterd를 사용해 선별해서 가져오기도 가능
+  return (
+    <View>
+      <Title>Let's Playball</Title>
+      <Calendar />
+      {/* <Field
       source={require("../assets/Images/FieldImg.png")}
       resizeMode="contain"
     /> */}
-    <Btn onPress={() => navigate("Write")}>
-      <MaterialIcons name="add" color={`${colors.GRAY800}`} size={35} />
-    </Btn>
-  </View>
-);
+      <Btn onPress={() => navigate("Write")}>
+        <MaterialIcons name="add" color={`${colors.GRAY800}`} size={35} />
+      </Btn>
+    </View>
+  );
+};
 
 export default Home;
