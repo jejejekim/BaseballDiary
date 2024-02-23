@@ -12,7 +12,7 @@ const TeamContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 8px 0px;
+  /* margin: 8px 0px 0px 0px; */
 `;
 
 const Team = styled.View`
@@ -48,10 +48,11 @@ const Score = styled.Text`
   font-family: PretendardB;
   font-size: 44px;
   color: ${colors.BLACK};
+  margin-bottom: 12px;
 `;
 
 const WinOrLose = styled.Text`
-  width: fit-content;
+  width: 70px;
   text-align: center;
   justify-content: center;
   font-family: PretendardR;
@@ -60,7 +61,7 @@ const WinOrLose = styled.Text`
   background-color: ${colors.MAINGREEN};
   padding: 4px 10px;
   border-radius: 999px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 `;
 
 const TimeInfo = styled.Text`
@@ -72,6 +73,7 @@ const TimeInfo = styled.Text`
 const InfoContainer = styled.View`
   height: 45px;
   flex-direction: column;
+  align-items: center;
 `;
 
 const ResultItem = () => {

@@ -11,7 +11,7 @@ const inningWidth = containerWidth - 48;
 const ScoreHeader = styled.View`
   width: ${containerWidth}px;
   flex-direction: row;
-  margin-top: 12px;
+  /* margin-top: 8px; */
 `;
 
 const TeamHeader = styled.Text`

@@ -62,11 +62,12 @@ const View = styled.View`
   flex: 1;
   align-items: center;
   padding: 0px 20px;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   background-color: ${colors.WHITE};
 `;
 
 const ScoreBoard = styled.View`
+  /* flex: 1; */
   align-items: center;
   background-color: ${colors.WHITE};
   padding: 12px 0px;
@@ -79,12 +80,18 @@ const Divder = styled.View`
 `;
 
 const DiaryView = styled.View`
+  /* flex: 3.5; */
+  width: 100%;
   margin-top: 16px;
 `;
 
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
-const Write = ({ navigation: { goBack } }) => {
+const Write = (
+  {
+    /*navigation: { goBack }*/
+  }
+) => {
   const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
   const [selectedEmotion, setEmotion] = useState(null); //감정 이모지 저장
   const [feelings, setFeelings] = useState(""); //감정 텍스트 저장
@@ -97,7 +104,7 @@ const Write = ({ navigation: { goBack } }) => {
     }
     realm.write(() => {
       const feeling = realm.create(
-        "Diary", //잤던 스키마에 맞춰서 value 넣어주기
+        "Diary", //짰던 스키마에 맞춰서 value 넣어주기
         {
           _id: Date.now(),
           emotion: selectedEmotion,
@@ -108,7 +115,7 @@ const Write = ({ navigation: { goBack } }) => {
     });
     setEmotion(null); //제출하고 나면 비워줘야됨
     setFeelings("");
-    goBack();
+    // goBack();
   };
   return (
     <View>

@@ -1,27 +1,42 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, TouchableOpacity } from "react-native";
-import { WHITE, BLACK } from "../colors";
+import colors from "../colors";
+import Write from "../srceens/Write";
 
 const Diary = () => (
-<View>
+  <View>
     <Text>Diary</Text>
-</View>
+  </View>
 );
+
+const WriteModal = () => <Write />;
 
 const NativeStack = createNativeStackNavigator();
 
-const Stack = () => <NativeStack.Navigator
-    screenOptions={{ 
-        title: "2023년 10월 16일",
-        headerStyle: {
-            backgroundColor: WHITE,
-        },
-        headerTintColor: BLACK,
-        headerShadowVisible: false,
-        headerTitleAlign: "center",
-    }}>
+const Stack = () => (
+  <NativeStack.Navigator
+    screenOptions={{
+      title: "2023년 10월 16일",
+      headerStyle: {
+        backgroundColor: colors.WHITE,
+      },
+      contentStyle: {
+        borderTopColor: colors.GRAYBG,
+        borderTopWidth: 1,
+      },
+      headerTitleStyle: {
+        fontSize: 18,
+        fontFamily: "PretendardM",
+      },
+      headerTintColor: colors.BLACK,
+      headerShadowVisible: false,
+      headerTitleAlign: "center",
+    }}
+  >
     <NativeStack.Screen name="Diary" component={Diary} />
-</NativeStack.Navigator>
+    <NativeStack.Screen name="Write" component={WriteModal} />
+  </NativeStack.Navigator>
+);
 
 export default Stack;

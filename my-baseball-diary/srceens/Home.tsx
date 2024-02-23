@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Calendar from "../components/Calendar";
 import { useDB } from "../context";
 
@@ -46,7 +47,9 @@ const BtnText = styled.Text`
   color: ${colors.GRAY800};
 `;
 
-const Home = ({ navigation: { navigate } }) => {
+const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
+  navigation: { navigate },
+}) => {
   const realm = useDB();
   // const [feelings, setFeelings] = useState(realm.object("Diary")); //데이터 가져오기 //fillterd를 사용해 선별해서 가져오기도 가능
   return (
@@ -57,7 +60,7 @@ const Home = ({ navigation: { navigate } }) => {
       source={require("../assets/Images/FieldImg.png")}
       resizeMode="contain"
     /> */}
-      <Btn onPress={() => navigate("Write")}>
+      <Btn onPress={() => navigate("Stack", { screen: "Write" })}>
         <MaterialIcons name="add" color={`${colors.GRAY800}`} size={35} />
       </Btn>
     </View>

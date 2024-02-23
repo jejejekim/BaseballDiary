@@ -5,27 +5,34 @@ import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
 
 const Wrapper = styled.View`
+  /* flex: 1; */
+  width: 100%;
   flex-direction: row;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 `;
 
 const LineUpWrapper = styled.View`
+  width: 21.7%;
   flex-direction: column;
-  margin-right: 12px;
+  /* background-color: blue; */
+  /* margin-right: 12px; */
 `;
 
 const BatOrPitContainer = styled.View`
+  width: 90%;
   flex-direction: row;
   margin-bottom: 6px;
 `;
 
 const BatHeader = styled.View`
+  width: 50%;
   flex-direction: row;
   align-items: center;
   margin-right: 6px;
 `;
 
 const PitHeader = styled.View`
+  width: 50%;
   flex-direction: row;
   align-items: center;
 `;
@@ -45,11 +52,13 @@ const Pit = styled.Text`
 `;
 
 const LineUpContainer = styled.View`
+  /* width: 100%; */
   height: 270px;
   justify-content: space-between;
 `;
 
 const LineUpItem = styled.View`
+  /* width: 100%; */
   flex-direction: row;
 `;
 
@@ -77,7 +86,9 @@ const PlayerItem = styled.Text`
 `;
 
 const InfoContainer = styled.View`
-  width: 243px;
+  width: 74.5%;
+  /* background-color: red; */
+  margin-left: 12px;
 `;
 
 const InfoTitle = styled.Text`
@@ -89,8 +100,8 @@ const InfoTitle = styled.Text`
 
 const PositionContainer = styled.View`
   background-color: ${colors.MAINGREEN};
-  width: 243px;
-  height: 130px;
+  width: 100%;
+  height: 131.5px;
   border-radius: 12px;
   margin-bottom: 10px;
 `;
@@ -101,14 +112,15 @@ const RecordContainer = styled.View`
 `;
 
 const MVPItem = styled.View`
+  width: 100%;
   flex-direction: row;
 `;
 
-const MVPHeader = styled.Text`
+const MVPHeader = styled.View`
   flex-direction: row;
   justify-content: center;
-  text-align: center;
-  /* align-items: center; */
+  /* text-align: center; */
+  align-items: center;
   background-color: ${colors.GRAY700};
   padding: 6px 8px;
   margin-right: 4px;
@@ -119,11 +131,11 @@ const MVP = styled.Text`
   font-family: PretendardR;
   font-size: 13px;
   color: ${colors.WHITE};
-  margin-left: 4px;
+  padding-left: 4px;
 `;
 
 const MVPInput = styled.TextInput`
-  width: 178px;
+  width: 76%;
   height: 32px;
   font-family: PretendardR;
   font-size: 13px;
@@ -134,15 +146,22 @@ const MVPInput = styled.TextInput`
   text-align: center;
 `;
 
-const RecordInput = styled.TextInput`
-  width: 242px;
+const RecordItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
   height: 32px;
+  padding: 6px 8px;
+  background-color: ${colors.GRAYBG};
+  border-radius: 4px;
+`;
+
+const RecordInput = styled.TextInput`
+  width: 100%;
   font-family: PretendardR;
   font-size: 13px;
-  background-color: ${colors.GRAYBG};
   color: ${colors.GRAY700};
-  border-radius: 4px;
-  padding: 6px 8px;
+  margin-left: 4px;
 `;
 
 const LineUpBoardItem = () => {
@@ -155,7 +174,7 @@ const LineUpBoardItem = () => {
               <MaterialCommunityIcons
                 name="baseball-bat"
                 color={colors.MAINGREEN}
-                size={12}
+                size={14}
               />
               <Bat>야수</Bat>
             </BatHeader>
@@ -163,7 +182,7 @@ const LineUpBoardItem = () => {
               <MaterialCommunityIcons
                 name="baseball"
                 color={colors.GRAY100}
-                size={12}
+                size={14}
               />
               <Pit>투수</Pit>
             </PitHeader>
@@ -207,7 +226,6 @@ const LineUpBoardItem = () => {
             </LineUpItem>
           </LineUpContainer>
         </LineUpWrapper>
-
         <InfoContainer>
           <InfoTitle>POSITION</InfoTitle>
           <PositionContainer></PositionContainer>
@@ -223,21 +241,26 @@ const LineUpBoardItem = () => {
                 // onSubmitEditing={onSubmit}
                 // onChangeText={onChangeText}
                 // value={feelings}
-                placeholder="오늘 MVP는 누구?"
+                placeholder="내가 생각하는 MVP는 누구?"
                 placeholderTextColor={colors.GRAY500}
               />
             </MVPItem>
-            {/* <MaterialCommunityIcons name="pencil" size={12} /> */}
-            <RecordInput
-              returnKeyType="done"
-              placeholder="오늘 인상 깊었던 기록"
-              placeholderTextColor={colors.GRAY500}
-            />
-            <RecordInput
-              returnKeyType="done"
-              placeholder="오늘 인상 깊었던 기록"
-              placeholderTextColor={colors.GRAY500}
-            />
+            <RecordItem>
+              <MaterialCommunityIcons name="pencil" size={14} />
+              <RecordInput
+                returnKeyType="done"
+                placeholder="오늘 인상 깊었던 기록"
+                placeholderTextColor={colors.GRAY500}
+              />
+            </RecordItem>
+            <RecordItem>
+              <MaterialCommunityIcons name="pencil" size={14} />
+              <RecordInput
+                returnKeyType="done"
+                placeholder="오늘 인상 깊었던 기록"
+                placeholderTextColor={colors.GRAY500}
+              />
+            </RecordItem>
           </RecordContainer>
         </InfoContainer>
       </Wrapper>

@@ -32,6 +32,7 @@ const Tabs = () => {
         },
         headerShadowVisible: false,
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tab.Screen

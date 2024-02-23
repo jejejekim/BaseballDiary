@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 
-const Wrapper = styled.View``;
+const Wrapper = styled.View`
+  /* flex: 0.97; */
+`;
 
 const InfoTitle = styled.Text`
   font-family: PretendardR;
@@ -11,15 +13,17 @@ const InfoTitle = styled.Text`
   margin-bottom: 4px;
 `;
 
+const NoteModal = styled.TouchableOpacity``;
+
 const NoteInput = styled.TextInput`
   width: 100%;
-  height: 187px;
+  height: 57%;
   font-family: PretendardR;
   font-size: 13px;
   background-color: ${colors.GRAYBG};
   color: ${colors.GRAY700};
-  border-radius: 4px;
-  padding: 6px 8px;
+  border-radius: 8px;
+  padding: 12px 12px;
 `;
 
 const NoteItem = () => {
@@ -27,10 +31,12 @@ const NoteItem = () => {
     <>
       <Wrapper>
         <InfoTitle>NOTE</InfoTitle>
+        <NoteModal />
         <NoteInput
           returnKeyType="done"
           placeholder="오늘의 경기는 어땠나요?"
           placeholderTextColor={colors.GRAY500}
+          textAlignVertical="top"
         />
       </Wrapper>
     </>
