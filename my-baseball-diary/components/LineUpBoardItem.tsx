@@ -163,8 +163,8 @@ const LineUpBoardItem = ({
   record1,
   record2,
   onChangeText,
-  onChangeText1,
-  onChangeText2,
+  onChangeRecord1,
+  onChangeRecord2,
   onSubmit,
 }) => {
   return (
@@ -239,7 +239,7 @@ const LineUpBoardItem = ({
                 <MVP>MVP</MVP>
               </MVPHeader>
               <MVPInput
-                returnKeyType="done"
+                returnKeyType="next"
                 onSubmitEditing={onSubmit}
                 onChangeText={onChangeText}
                 value={mvp}
@@ -250,9 +250,9 @@ const LineUpBoardItem = ({
             <RecordItem>
               <MaterialCommunityIcons name="pencil" size={14} />
               <RecordInput
-                returnKeyType="done"
+                returnKeyType="next"
                 onSubmitEditing={onSubmit}
-                onChangeText={onChangeText1}
+                onChangeText={onChangeRecord1}
                 value={record1}
                 placeholder="오늘 인상 깊었던 기록"
                 placeholderTextColor={colors.GRAY500}
@@ -261,9 +261,9 @@ const LineUpBoardItem = ({
             <RecordItem>
               <MaterialCommunityIcons name="pencil" size={14} />
               <RecordInput
-                returnKeyType="done"
+                returnKeyType="next"
                 onSubmitEditing={onSubmit}
-                onChangeText={onChangeText2}
+                onChangeText={onChangeRecord2}
                 value={record2}
                 placeholder="오늘 인상 깊었던 기록"
                 placeholderTextColor={colors.GRAY500}

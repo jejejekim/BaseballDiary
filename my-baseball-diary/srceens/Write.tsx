@@ -85,8 +85,6 @@ const DiaryView = styled.View`
   margin-top: 16px;
 `;
 
-const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
-
 const Write = () => {
   // const navigation = useNavigation(); //어째서인지 네비게이션이 안 되어서 useNavigation으로 해결.. //https://velog.io/@dltmdals9071/RN-navigation-error
   const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
@@ -97,13 +95,14 @@ const Write = () => {
   const [note, setNote] = useState(""); //노트
 
   const onChangeText = (text) => setMvp(text); //텍스트 변할 때마다 상태 업데이트
-  const onChangeText1 = (text) => setRecord1(text);
-  const onChangeText2 = (text) => setRecord2(text);
+  const onChangeRecord1 = (text) => setRecord1(text);
+  const onChangeRecord2 = (text) => setRecord2(text);
+  const onChangeNote = (text) => setNote(text);
 
   const onSubmit = () => {
-    if (mvp === "" || record1 === "") {
-      return Alert.alert("일기 내용을 모두 입력해주세요"); //입력했는지 확인하고 alert 띄우기
-    }
+    // if (mvp === "" || record1 === "") {
+    //   return Alert.alert("일기 내용을 모두 입력해주세요"); //입력했는지 확인하고 alert 띄우기 <<이거 조건 수정하기
+    // }
     realm.write(() => {
       const diaryContents = realm.create("Diary", {
         //App.js에서 짜놓은 스키마에 맞춰 작성
@@ -135,12 +134,12 @@ const Write = () => {
           record1={record1}
           record2={record2}
           onChangeText={onChangeText}
-          onChangeText1={onChangeText1}
-          onChangeText2={onChangeText2}
+          onChangeRecord1={onChangeRecord1}
+          onChangeRecord2={onChangeRecord2}
           onSubmit={onSubmit}
         />
       </DiaryView>
-      <NoteItem />
+      <NoteItem onSubmit={onSubmit} onChangeNote={onChangeNote} note={note} />
     </View>
   );
 };

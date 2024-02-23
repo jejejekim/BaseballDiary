@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -36,10 +36,10 @@ const NoteTouch = styled.TouchableOpacity`
   padding: 12px 12px;
 `;
 
-const NotePlaceHolder = styled.Text`
+const NoteText = styled.Text`
   font-family: PretendardR;
   font-size: 13px;
-  color: ${colors.GRAY500};
+  color: ${({ isFilled }) => (isFilled ? "red" : "black")};
 `;
 
 const NoteInput = styled.TextInput`
@@ -50,7 +50,7 @@ const NoteInput = styled.TextInput`
   padding: 12px 12px;
 `;
 
-const NoteItem = () => {
+const NoteItem = ({ onSubmit, onChangeNote, note }) => {
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
@@ -78,13 +78,22 @@ const NoteItem = () => {
     []
   );
 
+  const [noteText, setNoteText] = useState("오늘의 경기는 어땠나요?"); //NOTE 안에 들어가는 텍스트
+  const [isFilled, setIsFilled] = useState(false); //NOTE가 채워졌는지 여부
+
+  const onCopyPaste = () => {
+    setNoteText(note);
+    setIsFilled(true);
+  };
+
   // renders
   return (
     //바텀시트 참고: https://ddioniii.tistory.com/50
     <BottomSheetModalProvider>
       <InfoTitle>NOTE</InfoTitle>
       <NoteTouch onPress={handlePresentModalPress}>
-        <NotePlaceHolder>오늘의 경기는 어땠나요?</NotePlaceHolder>
+        <NoteText>{noteText}</NoteText>
+        {/* <NoteText>{noteText}</NoteText> */}
       </NoteTouch>
 
       {/* 모달 */}
@@ -98,10 +107,14 @@ const NoteItem = () => {
         <Wrapper>
           <InfoTitle>NOTE</InfoTitle>
           <NoteInput
-            returnKeyType="done"
+            returnKeyType="next"
+            onSubmitEditing={onCopyPaste}
+            onChangeText={onChangeNote}
+            value={note}
             placeholder="오늘의 경기는 어땠나요?"
             placeholderTextColor={colors.GRAY500}
             textAlignVertical="top"
+            isFilled={isFilled}
           />
         </Wrapper>
       </BottomSheetModal>

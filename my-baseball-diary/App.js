@@ -57,7 +57,7 @@ export default function App() {
       const db = await Realm.open({
         path: "diaryDB",
         schema: [DiarySchema],
-        schemaVersion: 1,
+        schemaVersion: 1, //참고: https://velog.io/@pjj186/React-Native-Realm-Migration //https://www.mongodb.com/docs/realm/sdk/react-native/model-data/change-an-object-model/
       });
       setRealm(db);
     } finally {
