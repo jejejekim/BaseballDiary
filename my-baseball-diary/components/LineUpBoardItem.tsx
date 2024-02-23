@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
+import { Alert } from "react-native";
 
 const Wrapper = styled.View`
-  /* flex: 1; */
   width: 100%;
   flex-direction: row;
   margin-bottom: 14px;
@@ -14,8 +14,6 @@ const Wrapper = styled.View`
 const LineUpWrapper = styled.View`
   width: 21.7%;
   flex-direction: column;
-  /* background-color: blue; */
-  /* margin-right: 12px; */
 `;
 
 const BatOrPitContainer = styled.View`
@@ -52,13 +50,11 @@ const Pit = styled.Text`
 `;
 
 const LineUpContainer = styled.View`
-  /* width: 100%; */
   height: 270px;
   justify-content: space-between;
 `;
 
 const LineUpItem = styled.View`
-  /* width: 100%; */
   flex-direction: row;
 `;
 
@@ -87,7 +83,6 @@ const PlayerItem = styled.Text`
 
 const InfoContainer = styled.View`
   width: 74.5%;
-  /* background-color: red; */
   margin-left: 12px;
 `;
 
@@ -119,7 +114,6 @@ const MVPItem = styled.View`
 const MVPHeader = styled.View`
   flex-direction: row;
   justify-content: center;
-  /* text-align: center; */
   align-items: center;
   background-color: ${colors.GRAY700};
   padding: 6px 8px;
@@ -164,7 +158,15 @@ const RecordInput = styled.TextInput`
   margin-left: 4px;
 `;
 
-const LineUpBoardItem = () => {
+const LineUpBoardItem = ({
+  mvp,
+  record1,
+  record2,
+  onChangeText,
+  onChangeText1,
+  onChangeText2,
+  onSubmit,
+}) => {
   return (
     <>
       <Wrapper>
@@ -238,9 +240,9 @@ const LineUpBoardItem = () => {
               </MVPHeader>
               <MVPInput
                 returnKeyType="done"
-                // onSubmitEditing={onSubmit}
-                // onChangeText={onChangeText}
-                // value={feelings}
+                onSubmitEditing={onSubmit}
+                onChangeText={onChangeText}
+                value={mvp}
                 placeholder="내가 생각하는 MVP는 누구?"
                 placeholderTextColor={colors.GRAY500}
               />
@@ -249,6 +251,9 @@ const LineUpBoardItem = () => {
               <MaterialCommunityIcons name="pencil" size={14} />
               <RecordInput
                 returnKeyType="done"
+                onSubmitEditing={onSubmit}
+                onChangeText={onChangeText1}
+                value={record1}
                 placeholder="오늘 인상 깊었던 기록"
                 placeholderTextColor={colors.GRAY500}
               />
@@ -257,6 +262,9 @@ const LineUpBoardItem = () => {
               <MaterialCommunityIcons name="pencil" size={14} />
               <RecordInput
                 returnKeyType="done"
+                onSubmitEditing={onSubmit}
+                onChangeText={onChangeText2}
+                value={record2}
                 placeholder="오늘 인상 깊었던 기록"
                 placeholderTextColor={colors.GRAY500}
               />

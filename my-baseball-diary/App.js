@@ -19,19 +19,18 @@ import { darkTheme, lightTheme } from "./styled";
 import Realm from "realm";
 import { DBContext } from "./context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
 
 SplashScreen.preventAutoHideAsync();
 
+//데이터 베이스 구조
 const DiarySchema = {
   name: "Diary",
   properties: {
     _id: "int",
-    emotion: "string",
-    message: "string",
+    mvp: "string",
+    record1: "string",
+    record2: "string",
+    note: "string",
   },
   primaryKey: "_id",
 };
@@ -58,6 +57,7 @@ export default function App() {
       const db = await Realm.open({
         path: "diaryDB",
         schema: [DiarySchema],
+        schemaVersion: 1,
       });
       setRealm(db);
     } finally {

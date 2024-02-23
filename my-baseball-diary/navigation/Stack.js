@@ -4,6 +4,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import colors from "../colors";
 import Write from "../srceens/Write";
 import NoteItem from "../components/NoteItem";
+import styled from "styled-components/native";
+
+const Done = styled.Text`
+  font-family: PretendardM;
+  font-size: 18px;
+  color: ${colors.MAINGREEN};
+`;
 
 const Diary = () => (
   <View>
@@ -12,8 +19,6 @@ const Diary = () => (
 );
 
 const WriteModal = () => <Write />;
-
-const NoteModal = () => <NoteItem />;
 
 const NativeStack = createNativeStackNavigator();
 
@@ -38,11 +43,19 @@ const Stack = () => (
     }}
   >
     <NativeStack.Screen name="Diary" component={Diary} />
-    <NativeStack.Screen name="Write" component={WriteModal} />
     <NativeStack.Screen
-      name="Note"
-      component={NoteModal}
-      options={{ headerShown: false, presentation: "modal" }}
+      name="Write"
+      component={WriteModal}
+      options={{
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => alert("This is a button!")}
+            color="#fff"
+          >
+            <Done>완료</Done>
+          </TouchableOpacity>
+        ),
+      }}
     />
   </NativeStack.Navigator>
 );

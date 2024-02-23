@@ -88,32 +88,40 @@ const DiaryView = styled.View`
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
 const Write = () => {
-  const navigation = useNavigation(); //어째서인지 네비게이션이 안 되어서 useNavigation으로 해결.. //https://velog.io/@dltmdals9071/RN-navigation-error
+  // const navigation = useNavigation(); //어째서인지 네비게이션이 안 되어서 useNavigation으로 해결.. //https://velog.io/@dltmdals9071/RN-navigation-error
   const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
-  const [selectedEmotion, setEmotion] = useState(null); //감정 이모지 저장
-  const [feelings, setFeelings] = useState(""); //감정 텍스트 저장
-  const onChangeText = (text) => setFeelings(text); //인풋 텍스트 내용이 변경되면 위에 저장
-  const onEmotionPress = (face) => setEmotion(face); //이모션을 누르면 state에 저장
+
+  const [mvp, setMvp] = useState(""); //mvp
+  const [record1, setRecord1] = useState(""); //인상 깊은 기록 1
+  const [record2, setRecord2] = useState(""); //인상 깊은 기록 2
+  const [note, setNote] = useState(""); //노트
+
+  const onChangeText = (text) => setMvp(text); //텍스트 변할 때마다 상태 업데이트
+  const onChangeText1 = (text) => setRecord1(text);
+  const onChangeText2 = (text) => setRecord2(text);
+
   const onSubmit = () => {
-    //제출 해야되는 내용 다 적었는지 확인
-    if (feelings === "" || selectedEmotion == null) {
-      return Alert.alert("Please complete form.");
+    if (mvp === "" || record1 === "") {
+      return Alert.alert("일기 내용을 모두 입력해주세요"); //입력했는지 확인하고 alert 띄우기
     }
     realm.write(() => {
-      const feeling = realm.create(
-        "Diary", //짰던 스키마에 맞춰서 value 넣어주기
-        {
-          _id: Date.now(),
-          emotion: selectedEmotion,
-          message: feelings,
-        }
-      );
-      console.log(feeling);
+      const diaryContents = realm.create("Diary", {
+        //App.js에서 짜놓은 스키마에 맞춰 작성
+        _id: Date.now(),
+        mvp: mvp,
+        record1: record1,
+        record2: record2,
+        note: note,
+      });
+      // console.log(diaryContents);
     });
-    setEmotion(null); //제출하고 나면 비워줘야됨
-    setFeelings("");
-    // goBack();
+    setMvp(""); //제출하고 나면 비워줘야 함
+    setRecord1("");
+    setRecord2("");
+    setNote("");
+    //네비게이트로 리스트 화면 가기~
   };
+
   return (
     <View>
       <ScoreBoard>
@@ -122,37 +130,18 @@ const Write = () => {
       </ScoreBoard>
       <Divder />
       <DiaryView>
-        <LineUpBoardItem />
-        {/* <NoteModal onPress={handlePresentModalPress}>
-          <NotePlaceHolder>오늘의 경기는 어땠나요?</NotePlaceHolder>
-        </NoteModal> */}
+        <LineUpBoardItem
+          mvp={mvp}
+          record1={record1}
+          record2={record2}
+          onChangeText={onChangeText}
+          onChangeText1={onChangeText1}
+          onChangeText2={onChangeText2}
+          onSubmit={onSubmit}
+        />
       </DiaryView>
       <NoteItem />
     </View>
-    // <View>
-    //   <Emotions>
-    //     {/* 이모지 불러오기 */}
-    //     {emotions.map((emotion, index) => (
-    //       <Emotion
-    //         selected={emotion === selectedEmotion}
-    //         onPress={() => onEmotionPress(emotion)}
-    //         key={index}
-    //       >
-    //         <EmotionText>{emotion}</EmotionText>
-    //       </Emotion>
-    //     ))}
-    //   </Emotions>
-    //   <TextInput
-    //     returnKeyType="done"
-    //     onSubmitEditing={onSubmit}
-    //     onChangeText={onChangeText}
-    //     value={feelings}
-    //     placeholder="오늘 인상 깊었던 기록"
-    //   />
-    //   <Btn>
-    //     <BtnText>완료</BtnText>
-    //   </Btn>
-    // </View>
   );
 };
 export default Write;

@@ -62,7 +62,7 @@ const NoteItem = () => {
     bottomSheetModalRef.current?.present();
   }, []);
   const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
+    // console.log("handleSheetChanges", index);
   }, []);
 
   //뒷배경 누르면 모달창 닫기
@@ -87,6 +87,7 @@ const NoteItem = () => {
         <NotePlaceHolder>오늘의 경기는 어땠나요?</NotePlaceHolder>
       </NoteTouch>
 
+      {/* 모달 */}
       <BottomSheetModal
         ref={bottomSheetModalRef}
         index={0}
