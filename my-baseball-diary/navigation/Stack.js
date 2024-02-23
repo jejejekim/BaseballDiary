@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, TouchableOpacity } from "react-native";
 import colors from "../colors";
 import Write from "../srceens/Write";
+import NoteItem from "../components/NoteItem";
 
 const Diary = () => (
   <View>
@@ -11,6 +12,8 @@ const Diary = () => (
 );
 
 const WriteModal = () => <Write />;
+
+const NoteModal = () => <NoteItem />;
 
 const NativeStack = createNativeStackNavigator();
 
@@ -36,6 +39,11 @@ const Stack = () => (
   >
     <NativeStack.Screen name="Diary" component={Diary} />
     <NativeStack.Screen name="Write" component={WriteModal} />
+    <NativeStack.Screen
+      name="Note"
+      component={NoteModal}
+      options={{ headerShown: false, presentation: "modal" }}
+    />
   </NativeStack.Navigator>
 );
 

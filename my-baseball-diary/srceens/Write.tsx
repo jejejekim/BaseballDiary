@@ -10,6 +10,9 @@ import ResultItem from "../components/ResultItem";
 import ScoreBoardItem from "../components/ScoreBoradItem";
 import LineUpBoardItem from "../components/LineUpBoardItem";
 import NoteItem from "../components/NoteItem";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+import Stack from "../navigation/Stack";
 
 // const TextInput = styled.TextInput`
 //   background-color: ${colors.GRAYBG};
@@ -85,13 +88,31 @@ const DiaryView = styled.View`
   margin-top: 16px;
 `;
 
+const InfoTitle = styled.Text`
+  font-family: PretendardR;
+  font-size: 13px;
+  color: ${colors.GRAY600};
+  margin-bottom: 4px;
+`;
+
+const NoteModal = styled.TouchableOpacity`
+  width: 100%;
+  height: 40%;
+  font-family: PretendardR;
+  font-size: 13px;
+  background-color: ${colors.GRAYBG};
+  border-radius: 8px;
+  padding: 12px 12px;
+`;
+
+const NotePlaceHolder = styled.Text`
+  color: ${colors.GRAY500};
+`;
+
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
-const Write = (
-  {
-    /*navigation: { goBack }*/
-  }
-) => {
+const Write = () => {
+  const navigation = useNavigation(); //어째서인지 네비게이션이 안 되어서 useNavigation으로 해결.. //https://velog.io/@dltmdals9071/RN-navigation-error
   const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
   const [selectedEmotion, setEmotion] = useState(null); //감정 이모지 저장
   const [feelings, setFeelings] = useState(""); //감정 텍스트 저장
@@ -126,7 +147,15 @@ const Write = (
       <Divder />
       <DiaryView>
         <LineUpBoardItem />
-        <NoteItem />
+        <InfoTitle>NOTE</InfoTitle>
+        <NoteModal
+          onPress={() => {
+            navigation.navigate("Stack", { screen: "Note" });
+          }}
+        >
+          <NotePlaceHolder>오늘의 경기는 어땠나요?</NotePlaceHolder>
+        </NoteModal>
+        {/* <NoteItem /> */}
       </DiaryView>
     </View>
     // <View>
