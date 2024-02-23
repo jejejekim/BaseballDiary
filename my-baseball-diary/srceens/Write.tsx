@@ -65,12 +65,10 @@ const View = styled.View`
   flex: 1;
   align-items: center;
   padding: 0px 20px;
-  /* padding-top: 30px; */
   background-color: ${colors.WHITE};
 `;
 
 const ScoreBoard = styled.View`
-  /* flex: 1; */
   align-items: center;
   background-color: ${colors.WHITE};
   padding: 12px 0px;
@@ -83,30 +81,8 @@ const Divder = styled.View`
 `;
 
 const DiaryView = styled.View`
-  /* flex: 3.5; */
   width: 100%;
   margin-top: 16px;
-`;
-
-const InfoTitle = styled.Text`
-  font-family: PretendardR;
-  font-size: 13px;
-  color: ${colors.GRAY600};
-  margin-bottom: 4px;
-`;
-
-const NoteModal = styled.TouchableOpacity`
-  width: 100%;
-  height: 40%;
-  font-family: PretendardR;
-  font-size: 13px;
-  background-color: ${colors.GRAYBG};
-  border-radius: 8px;
-  padding: 12px 12px;
-`;
-
-const NotePlaceHolder = styled.Text`
-  color: ${colors.GRAY500};
 `;
 
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
@@ -147,16 +123,11 @@ const Write = () => {
       <Divder />
       <DiaryView>
         <LineUpBoardItem />
-        <InfoTitle>NOTE</InfoTitle>
-        <NoteModal
-          onPress={() => {
-            navigation.navigate("Stack", { screen: "Note" });
-          }}
-        >
+        {/* <NoteModal onPress={handlePresentModalPress}>
           <NotePlaceHolder>오늘의 경기는 어땠나요?</NotePlaceHolder>
-        </NoteModal>
-        {/* <NoteItem /> */}
+        </NoteModal> */}
       </DiaryView>
+      <NoteItem />
     </View>
     // <View>
     //   <Emotions>

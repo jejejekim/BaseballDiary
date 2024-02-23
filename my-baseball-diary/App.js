@@ -18,6 +18,11 @@ import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styled";
 import Realm from "realm";
 import { DBContext } from "./context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -74,15 +79,17 @@ export default function App() {
   }
 
   return (
-    <DBContext.Provider value={realm}>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <NavigationContainer
-          onReady={onLayoutRootView}
-          theme={isDark ? DarkTheme : DefaultTheme}
-        >
-          <Root />
-        </NavigationContainer>
-      </ThemeProvider>
-    </DBContext.Provider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <DBContext.Provider value={realm}>
+        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+          <NavigationContainer
+            onReady={onLayoutRootView}
+            theme={isDark ? DarkTheme : DefaultTheme}
+          >
+            <Root />
+          </NavigationContainer>
+        </ThemeProvider>
+      </DBContext.Provider>
+    </GestureHandlerRootView>
   );
 }
