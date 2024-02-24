@@ -1,24 +1,37 @@
 import React from "react";
-import { View, Text } from "react-native";
 import styled from "styled-components/native";
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import colors from "../colors";
+import DiaryListItem from "../components/DiaryListItem";
+
+const Wrapper = styled.View`
+  flex: 1;
+  padding: 20px 20px;
+  background-color: ${colors.MAINBROWN};
+  align-items: center;
+`;
 
 const Touch = styled.TouchableOpacity`
-    flex:1;
-    justify-content: "center";
-    align-items: "center";
+  flex: 1;
+  justify-content: "center";
+  align-items: "center";
 `;
 
 const Title = styled.Text`
-    color: ${props=>props.theme.textColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 const DiaryList: React.FC<NativeStackScreenProps<any, "DiaryList">> = ({
-    navigation: {navigate}
-}) =>(
-    <Touch onPress={()=>navigate("Stack", {screen: "Diary"})}>
+  navigation: { navigate },
+}) => {
+  return (
+    <Wrapper>
+      <DiaryListItem />
+      <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
         <Title>DiaryList</Title>
-    </Touch>
-);
+      </Touch>
+    </Wrapper>
+  );
+};
 
 export default DiaryList;

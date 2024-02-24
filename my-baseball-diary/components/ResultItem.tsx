@@ -8,7 +8,7 @@ const screenWidth = Dimensions.get("window").width;
 const containerWidth = screenWidth - 80;
 
 const TeamContainer = styled.View`
-  width: ${containerWidth}px;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +38,7 @@ const TeamName = styled.Text`
 `;
 
 const ScoreContainer = styled.View`
-  width: 168px;
+  width: 55%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
