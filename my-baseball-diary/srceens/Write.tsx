@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, Button, TouchableOpacity } from "react-native";
 import { useDB } from "../context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
@@ -11,53 +11,7 @@ import ScoreBoardItem from "../components/ScoreBoradItem";
 import LineUpBoardItem from "../components/LineUpBoardItem";
 import NoteItem from "../components/NoteItem";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
 import Stack from "../navigation/Stack";
-
-// const TextInput = styled.TextInput`
-//   background-color: ${colors.GRAYBG};
-//   border-radius: 4px;
-//   padding: 10px 20px;
-//   font-size: 18px;
-// `;
-
-// const Btn = styled.TouchableOpacity`
-//   width: 100%;
-//   margin-top: 20px;
-//   background-color: ${colors.MAINGREEN};
-//   padding: 10px 20px;
-//   align-items: center;
-//   border-radius: 20px;
-//   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-// `;
-
-// const BtnText = styled.Text`
-//   color: white;
-//   font-weight: 500;
-//   font-size: 18px;
-// `;
-
-// //이모지를 감싸는 맨 위 컨테이너
-// const Emotions = styled.View`
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-bottom: 20px;
-// `;
-
-// const Emotion = styled.TouchableOpacity`
-//   background-color: white;
-//   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-//   padding: 10px;
-//   border-radius: 10px;
-//   border-width: 1px;
-//   border-color: ${(props) =>
-//     props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
-// `;
-
-// //이모지가 글자로 인식돼서 그걸 감싸기 위해 만듦
-// const EmotionText = styled.Text`
-//   font-size: 24px;
-// `;
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -85,7 +39,15 @@ const DiaryView = styled.View`
   margin-top: 16px;
 `;
 
-const Write = () => {
+const Done = styled.Text`
+  font-family: PretendardM;
+  font-size: 18px;
+  color: ${colors.MAINGREEN};
+`;
+
+const Write: React.FC<NativeStackScreenProps<any, "Write">> = ({
+  navigation,
+}) => {
   // const navigation = useNavigation(); //어째서인지 네비게이션이 안 되어서 useNavigation으로 해결.. //https://velog.io/@dltmdals9071/RN-navigation-error
   const realm = useDB(); //db를 props를 통하지 않고 가져다쓰기 가능
 
@@ -98,6 +60,18 @@ const Write = () => {
   const onChangeRecord1 = (text) => setRecord1(text);
   const onChangeRecord2 = (text) => setRecord2(text);
   const onChangeNote = (text) => setNote(text);
+
+  //스택 네비게이션 완료 버튼
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={onFinalSubmit}>
+          <Done>완료</Done>
+        </TouchableOpacity>
+      ),
+    });
+  }),
+    [navigation];
 
   const onSubmit = () => {
     // if (mvp === "" || record1 === "") {
@@ -112,13 +86,17 @@ const Write = () => {
         record2: record2,
         note: note,
       });
-      // console.log(diaryContents);
+      console.log(diaryContents);
     });
+  };
+
+  //스택 네비게이션에서 완료 버튼 눌렀을 때의 함수
+  const onFinalSubmit = () => {
     setMvp(""); //제출하고 나면 비워줘야 함
     setRecord1("");
     setRecord2("");
     setNote("");
-    //네비게이트로 리스트 화면 가기~
+    navigation.navigate("DiaryList"); //네비게이트로 리스트 화면 가기~
   };
 
   return (

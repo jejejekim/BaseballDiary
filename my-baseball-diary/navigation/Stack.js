@@ -1,16 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Button } from "react-native";
 import colors from "../colors";
 import Write from "../srceens/Write";
 import NoteItem from "../components/NoteItem";
 import styled from "styled-components/native";
-
-const Done = styled.Text`
-  font-family: PretendardM;
-  font-size: 18px;
-  color: ${colors.MAINGREEN};
-`;
 
 const Diary = () => (
   <View>
@@ -18,7 +12,7 @@ const Diary = () => (
   </View>
 );
 
-const WriteModal = () => <Write />;
+// const WriteModal = () => <Write />; //왜 이걸 넣으면 안되는 거지??????
 
 const NativeStack = createNativeStackNavigator();
 
@@ -43,20 +37,7 @@ const Stack = () => (
     }}
   >
     <NativeStack.Screen name="Diary" component={Diary} />
-    <NativeStack.Screen
-      name="Write"
-      component={WriteModal}
-      options={{
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => alert("This is a button!")}
-            color="#fff"
-          >
-            <Done>완료</Done>
-          </TouchableOpacity>
-        ),
-      }}
-    />
+    <NativeStack.Screen name="Write" component={Write} />
   </NativeStack.Navigator>
 );
 

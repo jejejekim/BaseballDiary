@@ -62,7 +62,7 @@ const Tabs = () => {
           },
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Write"
         component={Write}
         options={{
@@ -71,7 +71,7 @@ const Tabs = () => {
             return <MaterialIcons name="person" color={color} size={size} />;
           },
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

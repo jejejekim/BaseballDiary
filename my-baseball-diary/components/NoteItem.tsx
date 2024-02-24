@@ -12,9 +12,12 @@ import {
 const screenWidth = Dimensions.get("window").width;
 
 const Wrapper = styled.View`
+  flex: 1;
   width: ${screenWidth}px;
   padding: 0px 20px;
+  margin-top: 8px;
   background-color: ${colors.WHITE};
+  align-items: center;
 `;
 
 const InfoTitle = styled.Text`
@@ -25,29 +28,64 @@ const InfoTitle = styled.Text`
   margin-bottom: 4px;
 `;
 
-const NoteTouch = styled.TouchableOpacity`
-  width: 100%;
-  height: 33%;
-  font-family: PretendardR;
-  font-size: 13px;
-  background-color: ${colors.GRAYBG};
-  color: ${colors.GRAY700};
-  border-radius: 8px;
-  padding: 12px 12px;
-`;
+// const NoteTouch = styled.TouchableOpacity`
+//   width: 100%;
+//   height: 33%;
+//   font-family: PretendardR;
+//   font-size: 13px;
+//   background-color: ${colors.GRAYBG};
+//   color: ${colors.GRAY700};
+//   border-radius: 8px;
+//   padding: 12px 12px;
+// `;
 
-const NoteText = styled.Text`
-  font-family: PretendardR;
-  font-size: 13px;
-  color: ${({ isFilled }) => (isFilled ? "red" : "black")};
+// const NoteText = styled.Text`
+//   font-family: PretendardR;
+//   font-size: 13px;
+//   color: ${({ isFilled }) => (isFilled ? "red" : "black")};
+// `;
+
+const NoteContainer = styled.View`
+  width: 100%;
 `;
 
 const NoteInput = styled.TextInput`
   width: 100%;
-  height: 270px;
+  height: 223px;
   background-color: ${colors.GRAYBG};
   border-radius: 8px;
   padding: 12px 12px;
+`;
+
+const PhotoContainer = styled.View`
+  width: 100%;
+  margin-top: 12px;
+`;
+
+const PhotoInput = styled.View`
+  width: 100%;
+  height: 277px;
+  background-color: ${colors.GRAYBG};
+  border-radius: 8px;
+  padding: 12px 12px;
+`;
+
+const Button = styled.TouchableOpacity`
+  width: 100%;
+  /* height: 51px; */
+  bottom: 0%;
+  position: fixed;
+  background-color: ${colors.MAINGREEN};
+  border-radius: 12px;
+  padding: 16px 0px;
+  margin: 24px 0px 24px 0px;
+  align-items: center;
+`;
+
+const BtnText = styled.Text`
+  font-family: PretendardM;
+  font-size: 16px;
+  color: ${colors.WHITE};
 `;
 
 const NoteItem = ({ onSubmit, onChangeNote, note }) => {
@@ -55,7 +93,7 @@ const NoteItem = ({ onSubmit, onChangeNote, note }) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ["80%"], []);
+  const snapPoints = useMemo(() => ["85%"], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
@@ -78,12 +116,10 @@ const NoteItem = ({ onSubmit, onChangeNote, note }) => {
     []
   );
 
-  const [noteText, setNoteText] = useState("오늘의 경기는 어땠나요?"); //NOTE 안에 들어가는 텍스트
-  const [isFilled, setIsFilled] = useState(false); //NOTE가 채워졌는지 여부
-
-  const onCopyPaste = () => {
-    setNoteText(note);
-    setIsFilled(true);
+  //작성완료 버튼 클릭하면 실행되는 함수
+  //모달창 내려감
+  const onSubmitModal = () => {
+    bottomSheetModalRef.current?.close();
   };
 
   // renders
@@ -91,10 +127,16 @@ const NoteItem = ({ onSubmit, onChangeNote, note }) => {
     //바텀시트 참고: https://ddioniii.tistory.com/50
     <BottomSheetModalProvider>
       <InfoTitle>NOTE</InfoTitle>
-      <NoteTouch onPress={handlePresentModalPress}>
-        <NoteText>{noteText}</NoteText>
-        {/* <NoteText>{noteText}</NoteText> */}
-      </NoteTouch>
+      <NoteInput
+        onPressIn={handlePresentModalPress}
+        returnKeyType="next"
+        // onSubmitEditing={onCopyPaste}
+        onChangeText={onChangeNote}
+        value={note}
+        placeholder="오늘의 경기는 어땠나요?"
+        placeholderTextColor={colors.GRAY500}
+        textAlignVertical="top"
+      />
 
       {/* 모달 */}
       <BottomSheetModal
@@ -105,17 +147,25 @@ const NoteItem = ({ onSubmit, onChangeNote, note }) => {
         backdropComponent={renderBackdrop}
       >
         <Wrapper>
-          <InfoTitle>NOTE</InfoTitle>
-          <NoteInput
-            returnKeyType="next"
-            onSubmitEditing={onCopyPaste}
-            onChangeText={onChangeNote}
-            value={note}
-            placeholder="오늘의 경기는 어땠나요?"
-            placeholderTextColor={colors.GRAY500}
-            textAlignVertical="top"
-            isFilled={isFilled}
-          />
+          <NoteContainer>
+            <InfoTitle>NOTE</InfoTitle>
+            <NoteInput
+              returnKeyType="next"
+              // onSubmitEditing={onCopyPaste}
+              onChangeText={onChangeNote}
+              value={note}
+              placeholder="오늘의 경기는 어땠나요?"
+              placeholderTextColor={colors.GRAY500}
+              textAlignVertical="top"
+            />
+          </NoteContainer>
+          <PhotoContainer>
+            <InfoTitle>PHOTO</InfoTitle>
+            <PhotoInput />
+          </PhotoContainer>
+          <Button>
+            <BtnText onPress={onSubmitModal}>작성완료</BtnText>
+          </Button>
         </Wrapper>
       </BottomSheetModal>
     </BottomSheetModalProvider>

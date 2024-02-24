@@ -48,10 +48,11 @@ const BtnText = styled.Text`
 `;
 
 const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
-  navigation: { navigate },
+  navigation: { navigate, setOptions },
 }) => {
   const realm = useDB();
   // const [feelings, setFeelings] = useState(realm.object("Diary")); //데이터 가져오기 //fillterd를 사용해 선별해서 가져오기도 가능
+
   return (
     <View>
       <Title>Let's Playball</Title>
