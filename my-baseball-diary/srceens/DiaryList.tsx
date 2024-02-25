@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import colors from "../colors";
 import DiaryListItem from "../components/DiaryListItem";
+import { useDB } from "../context";
+import { FlatList } from "react-native-gesture-handler";
+import { Text } from "react-native";
 
 const Wrapper = styled.View`
   flex: 1;
@@ -32,13 +35,29 @@ const Title = styled.Text`
 const DiaryList: React.FC<NativeStackScreenProps<any, "DiaryList">> = ({
   navigation: { navigate },
 }) => {
+  const realm = useDB();
+  const [mvp, setMvp] = useState([]);
+  useEffect(() => {
+    const mvp = realm.objects("Diary");
+    setMvp(mvp);
+    mvp.addListener(() => {
+      const mvp = realm.objects("Diary");
+      setMvp(mvp);
+    });
+    return () => {
+      mvp.removeAllListeners();
+    };
+  }, []);
+
   return (
     <Wrapper>
       <WhiteLine />
-      <DiaryListItem />
-      <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
+      <FlatList data={mvp} renderItem={({ item }) => <Text>{item.mvp}</Text>} />
+
+      {/* <FlatList data={null} renderItem={({ item }) => <DiaryListItem />} /> */}
+      {/* <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
         <Title>DiaryList</Title>
-      </Touch>
+      </Touch> */}
     </Wrapper>
   );
 };
