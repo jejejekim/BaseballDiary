@@ -19,12 +19,6 @@ const Container = styled.View`
   background-color: ${colors.MAINGREEN};
 `;
 
-const Field = styled.Image`
-  flex: 1;
-  right: -25px;
-  bottom: -102px;
-`;
-
 const Title = styled.Text`
   color: ${colors.WHITE};
   font-size: 56px;
@@ -47,6 +41,20 @@ const BtnText = styled.Text`
   color: ${colors.GRAY800};
 `;
 
+const Wrapper = styled.View`
+  flex: 1;
+  position: relative;
+  /* background-color: red; */
+`;
+
+const Field = styled.Image`
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 113%;
+  height: 60%;
+`;
+
 const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   navigation: { navigate, setOptions },
 }) => {
@@ -56,14 +64,16 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   return (
     <View>
       <Title>Let's Playball</Title>
-      <Calendar />
-      {/* <Field
-      source={require("../assets/Images/FieldImg.png")}
-      resizeMode="contain"
-    /> */}
-      <Btn onPress={() => navigate("Stack", { screen: "Write" })}>
-        <MaterialIcons name="add" color={`${colors.GRAY800}`} size={35} />
-      </Btn>
+      <Wrapper>
+        <Field
+          source={require("../assets/Images/FieldImg.png")}
+          // resizeMode="contain"
+        />
+        <Calendar />
+        <Btn onPress={() => navigate("Stack", { screen: "Write" })}>
+          <MaterialIcons name="add" color={`${colors.GRAY800}`} size={35} />
+        </Btn>
+      </Wrapper>
     </View>
   );
 };

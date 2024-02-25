@@ -21,6 +21,10 @@ const WSeparator = styled.View`
   width: 8px;
 `;
 
+const Wrapper = styled.View`
+  position: absolute;
+`;
+
 const PreBtn = styled.TouchableOpacity``;
 
 const NextBtn = styled.TouchableOpacity``;
@@ -96,35 +100,37 @@ const Calendar = () => {
 
   return (
     <>
-      <MonthContainer>
-        <PreBtn onPress={handlePrevMonth}>
-          <MaterialIcons
-            name="chevron-left"
-            color={`${colors.WHITE}`}
-            size={24}
+      <Wrapper>
+        <MonthContainer>
+          <PreBtn onPress={handlePrevMonth}>
+            <MaterialIcons
+              name="chevron-left"
+              color={`${colors.WHITE}`}
+              size={24}
+            />
+          </PreBtn>
+          <MonthText>{dayjs(selectedDay).format("20YY년 MM월")}</MonthText>
+          <NextBtn onPress={handleNextMonth}>
+            <MaterialIcons
+              name="chevron-right"
+              color={`${colors.WHITE}`}
+              size={24}
+            />
+          </NextBtn>
+        </MonthContainer>
+        <CalendarContainer>
+          <DayContainer
+            horizontal
+            data={dayList}
+            renderItem={({ item }) => <DayText>{item}</DayText>}
+            ItemSeparatorComponent={WSeparator}
+            showsHorizontalScrollIndicator={false}
           />
-        </PreBtn>
-        <MonthText>{dayjs(selectedDay).format("20YY년 MM월")}</MonthText>
-        <NextBtn onPress={handleNextMonth}>
-          <MaterialIcons
-            name="chevron-right"
-            color={`${colors.WHITE}`}
-            size={24}
-          />
-        </NextBtn>
-      </MonthContainer>
-      <CalendarContainer>
-        <DayContainer
-          horizontal
-          data={dayList}
-          renderItem={({ item }) => <DayText>{item}</DayText>}
-          ItemSeparatorComponent={WSeparator}
-          showsHorizontalScrollIndicator={false}
-        />
-        <BoardContainer>
-          <Board>{board}</Board>
-        </BoardContainer>
-      </CalendarContainer>
+          <BoardContainer>
+            <Board>{board}</Board>
+          </BoardContainer>
+        </CalendarContainer>
+      </Wrapper>
     </>
   );
 };

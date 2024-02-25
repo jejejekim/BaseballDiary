@@ -52,7 +52,8 @@ const DiaryList: React.FC<NativeStackScreenProps<any, "DiaryList">> = ({
   return (
     <Wrapper>
       <WhiteLine />
-      <FlatList data={mvp} renderItem={({ item }) => <Text>{item.mvp}</Text>} />
+      {/* 무조건 스키마에 있는 정보가 들어와야 뜨기 때문에 api 연결 이후에 고려 */}
+      {/* <FlatList data={mvp} renderItem={({ item }) => <Text>{item.mvp}</Text>} /> */}
 
       {/* <FlatList data={null} renderItem={({ item }) => <DiaryListItem />} /> */}
       {/* <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
