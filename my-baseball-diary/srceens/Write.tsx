@@ -6,7 +6,7 @@ import { Alert, Button, TouchableOpacity } from "react-native";
 import { useDB } from "../context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
-import ResultItem from "../components/ResultItem";
+import { ResultItem } from "../components/ResultItem";
 import ScoreBoardItem from "../components/ScoreBoradItem";
 import LineUpBoardItem from "../components/LineUpBoardItem";
 import NoteItem from "../components/NoteItem";

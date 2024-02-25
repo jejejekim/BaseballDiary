@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import colors from "../colors";
 import { Dimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -8,11 +8,15 @@ const screenWidth = Dimensions.get("window").width;
 const containerWidth = screenWidth - 80;
 
 const TeamContainer = styled.View`
-  width: 100%;
+  width: 82%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   /* margin: 8px 0px 0px 0px; */
+`;
+
+const TeamContainer2 = styled(TeamContainer)`
+  width: 100%;
 `;
 
 const Team = styled.View`
@@ -38,15 +42,22 @@ const TeamName = styled.Text`
 `;
 
 const ScoreContainer = styled.View`
-  width: 55%;
+  /* width: 25%; */
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
 
-const Score = styled.Text`
+const Score = styled.Text<{ fontSize?: string }>`
   font-family: PretendardB;
   font-size: 44px;
+  color: ${colors.BLACK};
+  margin-bottom: 12px;
+`;
+
+const Score2 = styled.Text<{ fontSize?: string }>`
+  font-family: PretendardB;
+  font-size: 32px;
   color: ${colors.BLACK};
   margin-bottom: 12px;
 `;
@@ -61,7 +72,7 @@ const WinOrLose = styled.Text`
   background-color: ${colors.MAINGREEN};
   padding: 4px 10px;
   border-radius: 999px;
-  margin-bottom: 4px;
+  margin: 0px 16px 4px 16px;
 `;
 
 const TimeInfo = styled.Text`
@@ -76,7 +87,7 @@ const InfoContainer = styled.View`
   align-items: center;
 `;
 
-const ResultItem = () => {
+export const ResultItem = () => {
   return (
     <TeamContainer>
       <Team>
@@ -104,4 +115,30 @@ const ResultItem = () => {
   );
 };
 
-export default ResultItem;
+export const DiaryResultItem = () => {
+  return (
+    <TeamContainer2>
+      <Team>
+        <TeamLogo></TeamLogo>
+        <TeamName>롯데</TeamName>
+      </Team>
+
+      <ScoreContainer>
+        <Score2>7</Score2>
+        <InfoContainer>
+          <WinOrLose>승리요정</WinOrLose>
+          <TimeInfo>10.16(토) 18:30</TimeInfo>
+        </InfoContainer>
+        <Score2>2</Score2>
+      </ScoreContainer>
+
+      <Team>
+        <TeamLogo></TeamLogo>
+        <HomeTeam>
+          <MaterialIcons name="home" color={colors.GRAY700} size={10} />
+          <TeamName>한화</TeamName>
+        </HomeTeam>
+      </Team>
+    </TeamContainer2>
+  );
+};

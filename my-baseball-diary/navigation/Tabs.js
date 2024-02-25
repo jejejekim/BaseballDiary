@@ -33,6 +33,10 @@ const Tabs = () => {
         headerShadowVisible: false,
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
+        headerTitleStyle: {
+          fontSize: 18,
+          fontFamily: "PretendardM",
+        },
       }}
     >
       <Tab.Screen

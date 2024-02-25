@@ -1,16 +1,34 @@
 import React from "react";
 import styled from "styled-components/native";
-import ResultItem from "./ResultItem";
+import { DiaryResultItem } from "./ResultItem";
 import colors from "../colors";
+import DashedLine from "react-native-dashed-line";
+
+const Wrapper = styled.View`
+  flex-direction: row;
+`;
+
+const DayDefaultItem = styled.TouchableOpacity`
+  width: 41.14px;
+  height: 41.14px;
+  background-color: ${colors.POINTRED};
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ListItemContainer = styled.View`
-  width: 300px;
+  width: 84%;
+  align-items: center;
+  margin-left: 12px;
 `;
 
 const ListPhotoContainer = styled.View`
+  width: 100%;
   background-color: ${colors.WHITE};
-  padding: 8px;
+  padding: 10px 10px 11px 10px;
   border-radius: 12px;
+  margin-bottom: -1px;
 `;
 
 const Photo = styled.View`
@@ -25,27 +43,28 @@ const ResultContainer = styled.View`
   padding: 12px 20px;
   border-radius: 12px;
   overflow: hidden;
-  margin-top: -3px;
+  font-size: 20px;
 `;
 
 const DiaryListItem = () => {
   return (
     <>
-      <ListItemContainer>
-        <ListPhotoContainer>
-          <Photo />
-        </ListPhotoContainer>
-        <ResultContainer
-          style={{
-            borderWidth: 0,
-            borderTopWidth: 1,
-            borderColor: "#D9D8E0",
-            borderStyle: "dashed",
-          }}
-        >
-          <ResultItem />
-        </ResultContainer>
-      </ListItemContainer>
+      <Wrapper>
+        <DayDefaultItem />
+        <ListItemContainer>
+          <ListPhotoContainer>
+            <Photo />
+          </ListPhotoContainer>
+          <DashedLine
+            style={{ width: "94%", backgroundColor: "#fff" }}
+            dashLength={4}
+            dashColor={colors.GRAY100}
+          />
+          <ResultContainer>
+            <DiaryResultItem />
+          </ResultContainer>
+        </ListItemContainer>
+      </Wrapper>
     </>
   );
 };
