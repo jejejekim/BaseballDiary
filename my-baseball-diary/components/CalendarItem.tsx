@@ -8,10 +8,12 @@ import {
   DayNullItem,
   DayDefaultItem,
   DaySelectedItem,
+  DayDisabledItem,
   DayRedItem,
   DayYellowItem,
   DayGreenItem,
 } from "./DayItem";
+import { Text } from "react-native";
 
 //(참고)https://gist.github.com/intergalacticspacehighway/0def6d0b9b2672c3ae4b8ed5923a04b4
 
@@ -32,7 +34,37 @@ const DayText = styled.Text`
   font-size: 18px;
 `;
 
-const CalendarItem = ({ data, handleSelectDate, selectedDay }) => {
+const HSeparator = styled.View`
+  width: 8px;
+`;
+
+const AgendaCalendarContainer = styled.View`
+  width: ${screenWidth};
+  background-color: ${colors.WHITE};
+`;
+
+const DayContainer = styled.FlatList`
+  margin-bottom: 12px;
+  padding: 0px 16px;
+`;
+
+const RenderWrapper = styled.View`
+  flex-direction: column;
+  align-items: center;
+  margin-right: 8px;
+`;
+
+const DayText2 = styled.Text`
+  color: ${colors.BLACK};
+  width: ${itemSize}px;
+  height: fit-content;
+  font-family: PretendardR;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 8px;
+`;
+
+export const CalendarItem = ({ data, handleSelectDate, selectedDay }) => {
   //flastlist의 renderItem props 안애 들어갈 내용
   const renderItem = ({ item }) => {
     return item === null ? ( //날짜가 null이 아니고 제대로 들어왔는가
@@ -71,4 +103,54 @@ const CalendarItem = ({ data, handleSelectDate, selectedDay }) => {
   );
 };
 
-export default CalendarItem;
+//수평 캘린더 보드
+export const AgendaCalendarItem = ({ data, handleSelectDate, selectedDay }) => {
+  const dayList = ["일", "월", "화", "수", "목", "금", "토"]; //요일 배열
+
+  //flastlist의 renderItem props 안애 들어갈 내용
+  const renderItem = ({ item }) => {
+    return item === null ? ( //날짜가 null이 아니고 제대로 들어왔는가
+      <View style={{ width: 0, height: 0 }}></View> //텅 빈 아이템 리턴
+    ) : item === selectedDay ? ( //
+      <RenderWrapper>
+        <DayText2>{dayjs(item).day()}</DayText2>
+        <DayDisabledItem //날짜가 selectedDay라면 selectedItem 리턴
+          onPress={() => {
+            handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
+          }}
+          style={{ width: itemSize, height: itemSize }}
+        >
+          <DayText style={{ color: colors.GRAY500 }}>
+            {dayjs(item).date()}
+          </DayText>
+        </DayDisabledItem>
+      </RenderWrapper>
+    ) : (
+      <RenderWrapper>
+        <DayText2>{dayjs(item).day()}</DayText2>
+        <DayDisabledItem //아니라면 defaultItem 아이템 리턴
+          onPress={() => {
+            handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
+          }}
+          style={{ width: itemSize, height: itemSize }}
+        >
+          <DayText style={{ color: colors.GRAY500 }}>
+            {dayjs(item).date()}
+          </DayText>
+        </DayDisabledItem>
+      </RenderWrapper>
+    );
+  };
+  return (
+    <View>
+      <DayList
+        horizontal
+        data={data}
+        renderItem={renderItem}
+        // ItemSeparatorComponent={HSeparator}
+        // contentContainerStyle={{ gap }}
+        showsHorizontalScrollIndicator={false}
+      />
+    </View>
+  );
+};

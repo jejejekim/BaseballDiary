@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import dayjs from "dayjs";
 import { useEffect } from "react";
-import CalendarItem from "./CalendarItem";
+import { CalendarItem } from "./CalendarItem";
 
 const DayContainer = styled.View``;
 

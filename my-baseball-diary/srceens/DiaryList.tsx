@@ -5,13 +5,18 @@ import colors from "../colors";
 import DiaryListItem from "../components/DiaryListItem";
 import { useDB } from "../context";
 import { FlatList } from "react-native-gesture-handler";
-import { Text } from "react-native";
+import { Image, Text } from "react-native";
+import { AgendaList, Calendar } from "react-native-calendars";
+import AgendaCalendar from "../components/AgendaCalendar";
 
 const Wrapper = styled.View`
   flex: 1;
-  padding: 20px 20px;
   background-color: ${colors.MAINBROWN};
   /* align-items: center; */
+`;
+
+const Container = styled.View`
+  padding: 20px 20px;
 `;
 
 const WhiteLine = styled.View`
@@ -52,13 +57,16 @@ const DiaryList: React.FC<NativeStackScreenProps<any, "DiaryList">> = ({
   return (
     <Wrapper>
       <WhiteLine />
-      {/* 무조건 스키마에 있는 정보가 들어와야 뜨기 때문에 api 연결 이후에 고려 */}
-      {/* <FlatList data={mvp} renderItem={({ item }) => <Text>{item.mvp}</Text>} /> */}
+      <AgendaCalendar />
+      <Container>
+        {/* 무조건 스키마에 있는 정보가 들어와야 뜨기 때문에 api 연결 이후에 고려 */}
+        {/* <FlatList data={mvp} renderItem={({ item }) => <Text>{item.mvp}</Text>} /> */}
 
-      {/* <FlatList data={null} renderItem={({ item }) => <DiaryListItem />} /> */}
-      {/* <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
+        {/* <FlatList data={null} renderItem={({ item }) => <DiaryListItem />} /> */}
+        {/* <Touch onPress={() => navigate("Stack", { screen: "Diary" })}>
         <Title>DiaryList</Title>
       </Touch> */}
+      </Container>
     </Wrapper>
   );
 };
