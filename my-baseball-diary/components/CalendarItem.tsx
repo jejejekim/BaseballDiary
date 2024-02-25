@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Dimensions } from "react-native";
 import { View } from "react-native";
 import dayjs from "dayjs";
+import {
+  DayNullItem,
+  DayDefaultItem,
+  DaySelectedItem,
+  DayRedItem,
+  DayYellowItem,
+  DayGreenItem,
+} from "./DayItem";
 
 //(참고)https://gist.github.com/intergalacticspacehighway/0def6d0b9b2672c3ae4b8ed5923a04b4
 
@@ -16,22 +24,6 @@ const itemSize = availableSpace / numColumns; //DayItem 컴포넌트 크기
 //DayItem을 담는 grid
 const DayList = styled.FlatList``;
 
-//date값이 null일 때 반환하는 빈 DayItem
-const DayNullItem = styled.View`
-  width: ${itemSize}px;
-  height: ${itemSize}px;
-`;
-
-//DayDefaultItem
-const DayDefaultItem = styled.TouchableOpacity`
-  width: ${itemSize}px;
-  height: ${itemSize}px;
-  background-color: ${colors.WHITE30};
-  border-radius: 999px;
-  justify-content: center;
-  align-items: center;
-`;
-
 //날짜 표시하는 텍스트
 const DayText = styled.Text`
   color: ${colors.WHITE};
@@ -40,16 +32,26 @@ const DayText = styled.Text`
   font-size: 18px;
 `;
 
-const CalendarItem = ({ data, handleSelectDate }) => {
+const CalendarItem = ({ data, handleSelectDate, selectedDay }) => {
   //flastlist의 renderItem props 안애 들어갈 내용
   const renderItem = ({ item }) => {
-    return item === null ? ( //만약 날짜가 null이라면
-      <DayNullItem></DayNullItem> //텅 빈 아이템 리턴
-    ) : (
-      <DayDefaultItem //날짜가 제대로 들어왔으면 디폴트 아이템 리턴
+    return item === null ? ( //날짜가 null이 아니고 제대로 들어왔는가
+      <DayNullItem style={{ width: itemSize, height: itemSize }}></DayNullItem> //텅 빈 아이템 리턴
+    ) : item === selectedDay ? ( //
+      <DaySelectedItem //날짜가 selectedDay라면 selectedItem 리턴
         onPress={() => {
           handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
         }}
+        style={{ width: itemSize, height: itemSize }}
+      >
+        <DayText>{dayjs(item).date()}</DayText>
+      </DaySelectedItem>
+    ) : (
+      <DayDefaultItem //아니라면 defaultItem 아이템 리턴
+        onPress={() => {
+          handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
+        }}
+        style={{ width: itemSize, height: itemSize }}
       >
         <DayText>{dayjs(item).date()}</DayText>
       </DayDefaultItem>

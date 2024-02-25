@@ -32,7 +32,11 @@ const renderCalendarBoard = (
 
   return (
     <>
-      <CalendarItem data={arr} handleSelectDate={handleSelectDate} />
+      <CalendarItem
+        data={arr}
+        handleSelectDate={handleSelectDate}
+        selectedDay={selectedDay}
+      />
     </>
   );
 };
