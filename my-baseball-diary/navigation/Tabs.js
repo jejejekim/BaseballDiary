@@ -53,17 +53,18 @@ const Tabs = () => {
         name="DiaryList"
         component={DiaryList}
         options={{
-          title: "2023년 10월 16일",
-          headerTitleAlign: "center",
-          tabBarIcon: ({ focused, color, size }) => {
-            return (
-              <MaterialIcons
-                name="my-library-books"
-                color={color}
-                size={size}
-              />
-            );
-          },
+          headerShown: false,
+          // title: "2023년 10월 16일",
+          // headerTitleAlign: "center",
+          // tabBarIcon: ({ focused, color, size }) => {
+          //   return (
+          //     <MaterialIcons
+          //       name="my-library-books"
+          //       color={color}
+          //       size={size}
+          //     />
+          //   );
+          // },
         }}
       />
       <Tab.Screen

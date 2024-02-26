@@ -26,8 +26,19 @@ const Wrapper = styled.View`
   background-color: ${colors.WHITE};
 `;
 
+const TopBar = styled.View`
+  padding: 16px;
+`;
+
+const SelectedMonth = styled.Text`
+  text-align: center;
+  font-family: PretendardM;
+  font-size: 18px;
+  color: ${colors.BLACK};
+`;
+
 const AgendaCalendarContainer = styled.View`
-  padding-top: 8px;
+  /* padding-top: 8px; */
   padding-bottom: 20px;
   padding-right: 20px;
   padding-left: 20px;
@@ -63,6 +74,11 @@ const AgendaCalendar = () => {
 
   return (
     <Wrapper>
+      <TopBar>
+        <SelectedMonth>
+          20{dayjs(selectedDay).year()}년 {dayjs(selectedDay).month() + 1}월
+        </SelectedMonth>
+      </TopBar>
       <AgendaCalendarContainer>
         <AgendaCalendarItem
           data={arr}
