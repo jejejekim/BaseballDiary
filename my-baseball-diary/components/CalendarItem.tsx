@@ -13,8 +13,6 @@ import {
   DayYellowItem,
   DayGreenItem,
 } from "./DayItem";
-import { Text } from "react-native";
-import { BackdropBlur, Canvas, Fill, Group } from "@shopify/react-native-skia";
 
 //(참고)https://gist.github.com/intergalacticspacehighway/0def6d0b9b2672c3ae4b8ed5923a04b4
 
@@ -33,20 +31,6 @@ const DayText = styled.Text`
   text-align: center;
   font-family: PretendardR;
   font-size: 18px;
-`;
-
-const HSeparator = styled.View`
-  width: 8px;
-`;
-
-const AgendaCalendarContainer = styled.View`
-  width: ${screenWidth};
-  background-color: ${colors.WHITE};
-`;
-
-const DayContainer = styled.FlatList`
-  margin-bottom: 12px;
-  padding: 0px 16px;
 `;
 
 const RenderWrapper = styled.View`

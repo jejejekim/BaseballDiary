@@ -8,7 +8,6 @@ import { View } from "react-native";
 import dayjs from "dayjs";
 import renderCalendarBoard from "./renderCalendarBoard";
 import { Dimensions } from "react-native";
-import { BlurView } from "@react-native-community/blur";
 
 //(참고)https://9yujin.tistory.com/86?category=1071254
 
