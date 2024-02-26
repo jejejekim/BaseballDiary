@@ -5,6 +5,7 @@ import colors from "../colors";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Calendar from "../components/Calendar";
 import { useDB } from "../context";
+import { BlurView } from "@react-native-community/blur";
 
 const View = styled.View`
   flex: 1;

@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
+    "@shopify/react-native-skia": "^0.1.240",
     "@types/styled-components": "^5.1.34",
     "@types/styled-components-react-native": "^5.2.5",
     "dayjs": "^1.11.10",

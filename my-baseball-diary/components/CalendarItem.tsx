@@ -14,6 +14,7 @@ import {
   DayGreenItem,
 } from "./DayItem";
 import { Text } from "react-native";
+import { BackdropBlur, Canvas, Fill, Group } from "@shopify/react-native-skia";
 
 //(참고)https://gist.github.com/intergalacticspacehighway/0def6d0b9b2672c3ae4b8ed5923a04b4
 
@@ -79,14 +80,16 @@ export const CalendarItem = ({ data, handleSelectDate, selectedDay }) => {
         <DayText>{dayjs(item).date()}</DayText>
       </DaySelectedItem>
     ) : (
-      <DayDefaultItem //아니라면 defaultItem 아이템 리턴
-        onPress={() => {
-          handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
-        }}
-        style={{ width: itemSize, height: itemSize }}
-      >
-        <DayText>{dayjs(item).date()}</DayText>
-      </DayDefaultItem>
+      <>
+        <DayDefaultItem //아니라면 defaultItem 아이템 리턴
+          onPress={() => {
+            handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
+          }}
+          style={{ width: itemSize, height: itemSize }}
+        >
+          <DayText>{dayjs(item).date()}</DayText>
+        </DayDefaultItem>
+      </>
     );
   };
   return (
@@ -111,9 +114,10 @@ export const AgendaCalendarItem = ({ data, handleSelectDate, selectedDay }) => {
   const renderItem = ({ item }) => {
     return item === null ? ( //날짜가 null이 아니고 제대로 들어왔는가
       <View style={{ width: 0, height: 0 }}></View> //텅 빈 아이템 리턴
-    ) : item === selectedDay ? ( //
+    ) : item === selectedDay ? (
       <RenderWrapper>
-        <DayText2>{dayjs(item).day()}</DayText2>
+        {/* 요일 */}
+        <DayText2>{dayList[dayjs(item).day()]} </DayText2>
         <DayDisabledItem //날짜가 selectedDay라면 selectedItem 리턴
           onPress={() => {
             handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경
@@ -127,7 +131,8 @@ export const AgendaCalendarItem = ({ data, handleSelectDate, selectedDay }) => {
       </RenderWrapper>
     ) : (
       <RenderWrapper>
-        <DayText2>{dayjs(item).day()}</DayText2>
+        {/* 요일 */}
+        <DayText2>{dayList[dayjs(item).day()]}</DayText2>
         <DayDisabledItem //아니라면 defaultItem 아이템 리턴
           onPress={() => {
             handleSelectDate(dayjs(item).format("YY-MM-D")); //클릭하면 selectedDay 상태 변경

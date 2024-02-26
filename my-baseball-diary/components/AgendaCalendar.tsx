@@ -29,7 +29,7 @@ const Wrapper = styled.View`
 const AgendaCalendarContainer = styled.View`
   padding-top: 8px;
   padding-bottom: 20px;
-  /* margin-right: 20px; */
+  padding-right: 20px;
   padding-left: 20px;
 `;
 
