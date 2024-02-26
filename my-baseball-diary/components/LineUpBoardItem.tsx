@@ -5,6 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
 import { Alert } from "react-native";
 import BatOrPitItem from "./BatOrPitItem";
+import PositionItem from "./PositionItem";
 
 const Wrapper = styled.View`
   width: 100%;
@@ -27,14 +28,6 @@ const InfoTitle = styled.Text`
   font-size: 13px;
   color: ${colors.GRAY600};
   margin-bottom: 4px;
-`;
-
-const PositionContainer = styled.View`
-  background-color: ${colors.MAINGREEN};
-  width: 100%;
-  height: 131.5px;
-  border-radius: 12px;
-  margin-bottom: 10px;
 `;
 
 const RecordContainer = styled.View`
@@ -111,7 +104,7 @@ const LineUpBoardItem = ({
         </LineUpWrapper>
         <InfoContainer>
           <InfoTitle>POSITION</InfoTitle>
-          <PositionContainer></PositionContainer>
+          <PositionItem />
           <InfoTitle>RECORD</InfoTitle>
           <RecordContainer>
             <MVPItem>

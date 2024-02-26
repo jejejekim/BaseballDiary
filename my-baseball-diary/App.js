@@ -45,6 +45,7 @@ export default function App() {
   });
   const [assets] = useAssets([
     require("./assets/Images/FieldImg.png"),
+    require("./assets/Images/PositionField.png"),
     /* require('path/to/other.png') */
   ]);
   const isDark = useColorScheme() === "dark"; //다크모드 state
