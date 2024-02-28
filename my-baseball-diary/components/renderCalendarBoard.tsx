@@ -4,8 +4,6 @@ import dayjs from "dayjs";
 import { useEffect } from "react";
 import { CalendarItem } from "./CalendarItem";
 
-const DayContainer = styled.View``;
-
 const renderCalendarBoard = (
   selectedDay: string,
   handleSelectDate: (v: string) => void //setSelectdDay

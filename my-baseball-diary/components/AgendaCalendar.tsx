@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
-import { Dimensions, Text, View } from "react-native";
 import dayjs from "dayjs";
-import {
-  AgendaList,
-  CalendarProvider,
-  ExpandableCalendar,
-} from "react-native-calendars";
-import moment from "moment";
-import Swiper from "react-native-swiper";
-import { FlatList } from "react-native-gesture-handler";
 import { AgendaCalendarItem } from "./CalendarItem";
-import { DayDefaultItem } from "./DayItem";
-
-const numColumns = 7;
-const screenWidth = Dimensions.get("window").width;
-const gap = 8;
-const availableSpace = screenWidth - 40 - (numColumns - 1) * gap;
-const itemSize = availableSpace / numColumns;
 
 const Wrapper = styled.View`
   position: absolute;

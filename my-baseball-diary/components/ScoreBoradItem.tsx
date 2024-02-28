@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Dimensions } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
 const containerWidth = screenWidth - 40;
@@ -11,7 +10,6 @@ const inningWidth = containerWidth - 48;
 const ScoreHeader = styled.View`
   width: ${containerWidth}px;
   flex-direction: row;
-  /* margin-top: 8px; */
 `;
 
 const TeamHeader = styled.Text`

@@ -1,18 +1,13 @@
 import React from "react";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import colors from "../colors";
-import { Dimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-
-const screenWidth = Dimensions.get("window").width;
-const containerWidth = screenWidth - 80;
 
 const TeamContainer = styled.View`
   width: 82%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* margin: 8px 0px 0px 0px; */
 `;
 
 const TeamContainer2 = styled(TeamContainer)`
@@ -42,7 +37,6 @@ const TeamName = styled.Text`
 `;
 
 const ScoreContainer = styled.View`
-  /* width: 25%; */
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

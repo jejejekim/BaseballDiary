@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../colors";
-import { Alert } from "react-native";
 import BatOrPitItem from "./BatOrPitItem";
 import PositionItem from "./PositionItem";
 

@@ -1,9 +1,8 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Dimensions, Text } from "react-native";
-import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
@@ -27,23 +26,6 @@ const InfoTitle = styled.Text`
   color: ${colors.GRAY600};
   margin-bottom: 4px;
 `;
-
-// const NoteTouch = styled.TouchableOpacity`
-//   width: 100%;
-//   height: 33%;
-//   font-family: PretendardR;
-//   font-size: 13px;
-//   background-color: ${colors.GRAYBG};
-//   color: ${colors.GRAY700};
-//   border-radius: 8px;
-//   padding: 12px 12px;
-// `;
-
-// const NoteText = styled.Text`
-//   font-family: PretendardR;
-//   font-size: 13px;
-//   color: ${({ isFilled }) => (isFilled ? "red" : "black")};
-// `;
 
 const NoteContainer = styled.View`
   width: 100%;

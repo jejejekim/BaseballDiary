@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Image, StyleSheet } from "react-native";
 import colors from "../colors";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { View } from "react-native";
 import dayjs from "dayjs";
 import renderCalendarBoard from "./renderCalendarBoard";
 import { Dimensions } from "react-native";
