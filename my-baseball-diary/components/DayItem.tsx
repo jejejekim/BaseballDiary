@@ -23,7 +23,7 @@ export const DayDefaultItem = styled.TouchableOpacity`
 
 export const DaySelectedItem = styled.TouchableOpacity`
   background-color: ${colors.WHITE30};
-  border-width: 1;
+  border-width: 1px;
   border-color: ${colors.WHITE};
   border-radius: 999px;
   justify-content: center;
