@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 # 페이지 로딩을 기다리는데에 사용할 time 모듈 import
 import time
 
+#json
 import json
 
 # 브라우저 꺼짐 방지 옵션
@@ -44,7 +45,7 @@ time.sleep(3)
 #구장
 for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[1]/ul/li[1]'):
     stadium = value.text
-    print(stadium)
+    # print(stadium)
 
 #시작 시간
 for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[1]/ul/li[2]'):
@@ -92,9 +93,8 @@ for index, value in enumerate(pitcher_rows):
     pitcher_name = value.find_elements(By.TAG_NAME, "td")[0].text
     pitcher.append({"record": pitcher_record, "name": pitcher_name})
 
-KBOdatas = list()
-
 #모든 정보를 저장할 KBOData 배열
+KBOdatas = list()
 KBOData ={
           "startTime": start_time,
           "score": {"away": away_score, "home": home_score },
@@ -103,8 +103,6 @@ KBOData ={
           "pitcher": pitcher,
         }
 
-# KBOdatas.append(KBOData)
-# print(KBOdatas)
-
-data = json.dumps(KBOData, ensure_ascii=False, indent="\t")
-print(data)
+#KBOData.json 파일 생성
+with open("KBOData.json", "w", encoding="utf-8") as f:
+    json.dump(KBOData, f, ensure_ascii=False, indent="\t")
