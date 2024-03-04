@@ -10,6 +10,8 @@ from selenium.webdriver.common.by import By
 # 페이지 로딩을 기다리는데에 사용할 time 모듈 import
 import time
 
+import json
+
 # 브라우저 꺼짐 방지 옵션
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
@@ -101,5 +103,8 @@ KBOData ={
           "pitcher": pitcher,
         }
 
-KBOdatas.append(KBOData)
-print(KBOdatas)
+# KBOdatas.append(KBOData)
+# print(KBOdatas)
+
+data = json.dumps(KBOData, ensure_ascii=False, indent="\t")
+print(data)
