@@ -24,7 +24,7 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx')
 
 # 페이지가 완전히 로딩되도록 3초동안 기다림
-time.sleep(4)
+time.sleep(5)
 
 #캘린더 버튼 클릭
 driver.find_element(By.XPATH, '//*[@id="contents"]/div[2]/div/img').click()
@@ -94,7 +94,7 @@ for index, value in enumerate(pitcher_rows):
     pitcher.append({"record": pitcher_record, "name": pitcher_name})
 
 #모든 정보를 저장할 KBOData 배열
-KBOdatas = list()
+# KBOdatas = list()
 KBOData ={
           "startTime": start_time,
           "score": {"away": away_score, "home": home_score },

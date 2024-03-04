@@ -19,8 +19,13 @@ import { darkTheme, lightTheme } from "./styled";
 import Realm from "realm";
 import { DBContext } from "./context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import crawlingData from "./KBOData.json";
 
 SplashScreen.preventAutoHideAsync();
+
+let data = JSON.stringify(crawlingData);
+
+let KBOData = {};
 
 //데이터 베이스 구조
 const DiarySchema = {
@@ -58,6 +63,7 @@ export default function App() {
       const db = await Realm.open({
         path: "diaryDB",
         schema: [DiarySchema],
+        //스키마 스펙 변경할 때마다 버전 변경해야함
         schemaVersion: 1, //참고: https://velog.io/@pjj186/React-Native-Realm-Migration //https://www.mongodb.com/docs/realm/sdk/react-native/model-data/change-an-object-model/
       });
       setRealm(db);
@@ -78,6 +84,8 @@ export default function App() {
   if (!fontsLoaded || !assets || !ready) {
     return null;
   }
+
+  console.log(data);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
