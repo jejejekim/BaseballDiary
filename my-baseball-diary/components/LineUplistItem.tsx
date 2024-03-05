@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
+import { KBOData } from "../KBOData";
 
 const LineUpContainer = styled.View`
   height: 270px;
@@ -35,6 +36,7 @@ const PlayerItem = styled.Text`
 `;
 
 export const BatLineUpListItem = () => {
+  const hitter = KBOData.hitter;
   return (
     <LineUpContainer>
       <LineUpItem>

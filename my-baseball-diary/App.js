@@ -23,9 +23,15 @@ import crawlingData from "./KBOData.json";
 
 SplashScreen.preventAutoHideAsync();
 
-let data = JSON.stringify(crawlingData);
+// let data = JSON.parse(JSON.stringify(crawlingData));
 
-let KBOData = {};
+// let KBOData = {
+//   startTime: data.startTime,
+//   score: data.score,
+//   team: data.team,
+//   hitter: data.hitter,
+//   pitcher: data.pitcher,
+// };
 
 //데이터 베이스 구조
 const DiarySchema = {
@@ -84,8 +90,6 @@ export default function App() {
   if (!fontsLoaded || !assets || !ready) {
     return null;
   }
-
-  console.log(data);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

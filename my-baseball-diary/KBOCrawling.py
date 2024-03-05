@@ -73,15 +73,15 @@ for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[
     home_team = value.get_attribute('alt')
 
 #야수라인업
-batter = []
-batter_table = driver.find_element(By.ID, 'tblHomeHitter1')
-batter_tbody = batter_table.find_element(By.TAG_NAME, "tbody")
-batter_rows = batter_tbody.find_elements(By.TAG_NAME, "tr")
-for index, value in enumerate(batter_rows):
-    batter_num = value.find_elements(By.TAG_NAME, "th")[0].text
+hitter = []
+hitter_table = driver.find_element(By.ID, 'tblHomeHitter1')
+hitter_tbody = hitter_table.find_element(By.TAG_NAME, "tbody")
+hitter_rows = hitter_tbody.find_elements(By.TAG_NAME, "tr")
+for index, value in enumerate(hitter_rows):
+    hitter_num = value.find_elements(By.TAG_NAME, "th")[0].text
     position = value.find_elements(By.TAG_NAME, "th")[1].text
-    batter_name = value.find_elements(By.TAG_NAME, "td")[0].text
-    batter.append({"num": batter_num, "position": position, "name": batter_name})
+    hitter_name = value.find_elements(By.TAG_NAME, "td")[0].text
+    hitter.append({"num": hitter_num, "position": position, "name": hitter_name})
 
 #투수라인업
 pitcher = []
@@ -99,7 +99,7 @@ KBOData ={
           "startTime": start_time,
           "score": {"away": away_score, "home": home_score },
           "team": {"away": away_team, "home": home_team},
-          "batter": batter,
+          "hitter": hitter,
           "pitcher": pitcher,
         }
 
