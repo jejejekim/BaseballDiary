@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { KBOData } from "../KBOData";
@@ -36,88 +36,64 @@ const PlayerItem = styled.Text`
 `;
 
 export const BatLineUpListItem = () => {
-  const hitter = KBOData.hitter;
-  return (
-    <LineUpContainer>
-      <LineUpItem>
-        <NumItem>1</NumItem>
-        <PlayerItem>안권수</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>2</NumItem>
-        <PlayerItem>노진혁</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>3</NumItem>
-        <PlayerItem>윤동희</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>4</NumItem>
-        <PlayerItem>전준우</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>5</NumItem>
-        <PlayerItem>유강남</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>6</NumItem>
-        <PlayerItem>한동희</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>7</NumItem>
-        <PlayerItem>정대선</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>8</NumItem>
-        <PlayerItem>김민석</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>9</NumItem>
-        <PlayerItem>이학주</PlayerItem>
-      </LineUpItem>
-    </LineUpContainer>
-  );
+  const hitterArr = KBOData.hitter;
+
+  //대타 선수들 라인업에서 삭제
+  const hitter = hitterArr.reduce((acc, curr) => {
+    if (acc.findIndex(({ num }) => num === curr.num) === -1) {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+
+  const rendering = () => {
+    const result = [];
+    for (let i = 0; i < 9; i++) {
+      result.push(
+        <LineUpItem>
+          <NumItem>{hitter[i].num}</NumItem>
+          <PlayerItem>{hitter[i].name}</PlayerItem>
+        </LineUpItem>
+      );
+    }
+    return result;
+  };
+  return <LineUpContainer>{rendering()}</LineUpContainer>;
 };
 
 export const PitLineUpListItem = () => {
-  return (
-    <LineUpContainer>
-      <LineUpItem>
-        <NumItem>SP</NumItem>
-        <PlayerItem>심재민</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>최준용</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>승</NumItem>
-        <PlayerItem>신정락</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>홀</NumItem>
-        <PlayerItem>구승민</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>김상수</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>김원중</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>-</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>-</PlayerItem>
-      </LineUpItem>
-      <LineUpItem>
-        <NumItem>-</NumItem>
-        <PlayerItem>-</PlayerItem>
-      </LineUpItem>
-    </LineUpContainer>
-  );
+  const pitcher = KBOData.pitcher;
+
+  const rendering = () => {
+    const result = [];
+    for (let i = 0; i < pitcher.length; i++) {
+      if (pitcher[i].record == " ") {
+        //튜수 기록이 비어있으면 - 넣어서
+        result.push(
+          <LineUpItem>
+            <NumItem>-</NumItem>
+            <PlayerItem>{pitcher[i].name}</PlayerItem>
+          </LineUpItem>
+        );
+      } else {
+        result.push(
+          <LineUpItem>
+            <NumItem>{pitcher[i].record}</NumItem>
+            <PlayerItem>{pitcher[i].name}</PlayerItem>
+          </LineUpItem>
+        );
+      }
+    }
+    for (let i = 0; i < 9 - pitcher.length; i++) {
+      //9개 칸에서 투수 비는 만큼 -로 채워서 넣기
+      result.push(
+        <LineUpItem>
+          <NumItem>-</NumItem>
+          <PlayerItem>-</PlayerItem>
+        </LineUpItem>
+      );
+    }
+    return result;
+  };
+  return <LineUpContainer>{rendering()}</LineUpContainer>;
 };

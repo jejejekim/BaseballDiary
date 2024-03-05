@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
+import { KBOData } from "../KBOData";
 
 const PositionContainer = styled.View`
   background-color: ${colors.MAINGREEN};
@@ -76,24 +77,35 @@ const DH = styled(Player)`
 `;
 
 const PositionItem = () => {
+  const hitters = KBOData.hitter;
   return (
     <PositionContainer>
       <PositionField source={require("../assets/Images/PositionField.png")} />
       <PlayerContainer>
         <OutFielder>
-          <LF>안권수</LF>
-          <CF>김민석</CF>
-          <RF>윤동희</RF>
+          <LF>{hitters.find((hitter) => hitter.position === "좌").name}</LF>
+          <CF>{hitters.find((hitter) => hitter.position === "중").name}</CF>
+          <RF>{hitters.find((hitter) => hitter.position === "우").name}</RF>
         </OutFielder>
         <InFielder>
-          <ThirdBase>이학주</ThirdBase>
-          <ShortStop>노진혁</ShortStop>
-          <SecondBase>정대선</SecondBase>
-          <FirstBase>한동희</FirstBase>
+          <ThirdBase>
+            {hitters.find((hitter) => hitter.position === "三").name}
+          </ThirdBase>
+          <ShortStop>
+            {hitters.find((hitter) => hitter.position === "유").name}
+          </ShortStop>
+          <SecondBase>
+            {hitters.find((hitter) => hitter.position === "二").name}
+          </SecondBase>
+          <FirstBase>
+            {hitters.find((hitter) => hitter.position === "一").name}
+          </FirstBase>
         </InFielder>
         <CatcherDH>
-          <Catcher>유강남</Catcher>
-          <DH>전준우</DH>
+          <Catcher>
+            {hitters.find((hitter) => hitter.position === "포").name}
+          </Catcher>
+          <DH>{hitters.find((hitter) => hitter.position === "지").name}</DH>
         </CatcherDH>
       </PlayerContainer>
     </PositionContainer>
