@@ -20,6 +20,7 @@ import Realm from "realm";
 import { DBContext } from "./context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import crawlingData from "./KBOData.json";
+import { KBOData } from "./KBOData";
 
 SplashScreen.preventAutoHideAsync();
 

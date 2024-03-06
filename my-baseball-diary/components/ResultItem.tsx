@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import { KBOData } from "../KBOData";
 
 const TeamContainer = styled.View`
   width: 82%;
@@ -82,11 +83,14 @@ const InfoContainer = styled.View`
 `;
 
 export const ResultItem = () => {
+  const awayTeam = KBOData.team.away;
+  const homeTeam = KBOData.team.home;
+
   return (
     <TeamContainer>
       <Team>
         <TeamLogo></TeamLogo>
-        <TeamName>롯데</TeamName>
+        <TeamName>{awayTeam}</TeamName>
       </Team>
 
       <ScoreContainer>
@@ -102,7 +106,7 @@ export const ResultItem = () => {
         <TeamLogo></TeamLogo>
         <HomeTeam>
           <MaterialIcons name="home" color={colors.GRAY700} size={10} />
-          <TeamName>한화</TeamName>
+          <TeamName>{homeTeam}</TeamName>
         </HomeTeam>
       </Team>
     </TeamContainer>

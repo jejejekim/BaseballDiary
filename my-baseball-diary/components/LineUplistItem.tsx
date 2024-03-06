@@ -68,7 +68,7 @@ export const PitLineUpListItem = () => {
     const result = [];
     for (let i = 0; i < pitcher.length; i++) {
       if (pitcher[i].record == " ") {
-        //튜수 기록이 비어있으면 - 넣어서
+        //투수 기록이 비어있으면 - 넣어서
         result.push(
           <LineUpItem>
             <NumItem>-</NumItem>

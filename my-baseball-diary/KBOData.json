@@ -1,90 +1,149 @@
 {
-  "startTime": "18:30",
-  "score": {
-    "away": ["0", "1", "0", "0", "0", "0", "2", "3", "2", "-", "-", "-"],
-    "home": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-"]
-  },
-  "team": {
-    "away": "키움",
-    "home": "롯데"
-  },
-  "hitter": [
-    {
-      "num": "1",
-      "position": "우",
-      "name": "고승민"
-    },
-    {
-      "num": "2",
-      "position": "一",
-      "name": "안치홍"
-    },
-    {
-      "num": "2",
-      "position": "一",
-      "name": "이호연"
-    },
-    {
-      "num": "3",
-      "position": "지",
-      "name": "이대호"
-    },
-    {
-      "num": "4",
-      "position": "중",
-      "name": "피터스"
-    },
-    {
-      "num": "5",
-      "position": "좌",
-      "name": "조세진"
-    },
-    {
-      "num": "6",
-      "position": "유",
-      "name": "이학주"
-    },
-    {
-      "num": "6",
-      "position": "타유",
-      "name": "한태양"
-    },
-    {
-      "num": "7",
-      "position": "포",
-      "name": "안중열"
-    },
-    {
-      "num": "8",
-      "position": "三",
-      "name": "김민수"
-    },
-    {
-      "num": "9",
-      "position": "二",
-      "name": "배성근"
-    }
-  ],
-  "pitcher": [
-    {
-      "record": "패",
-      "name": "박세웅"
-    },
-    {
-      "record": " ",
-      "name": "김도규"
-    },
-    {
-      "record": " ",
-      "name": "김유영"
-    },
-    {
-      "record": " ",
-      "name": "진명호"
-    },
-    {
-      "record": " ",
-      "name": "정성종"
-    }
-  ]
+	"startTime": "14:00",
+	"score": {
+		"away": [
+			"0",
+			"1",
+			"0",
+			"3",
+			"3",
+			"1",
+			"0",
+			"0",
+			"1",
+			"0",
+			"1",
+			"-"
+		],
+		"home": [
+			"3",
+			"0",
+			"0",
+			"0",
+			"0",
+			"0",
+			"5",
+			"1",
+			"0",
+			"0",
+			"3",
+			"-"
+		],
+		"awayTotal": "10",
+		"homeTotal": "12"
+	},
+	"team": {
+		"away": "롯데",
+		"home": "두산"
+	},
+	"hitter": [
+		{
+			"num": "1",
+			"position": "중좌",
+			"name": "안권수"
+		},
+		{
+			"num": "2",
+			"position": "二",
+			"name": "안치홍"
+		},
+		{
+			"num": "2",
+			"position": "주중",
+			"name": "김민석"
+		},
+		{
+			"num": "3",
+			"position": "우",
+			"name": "렉스"
+		},
+		{
+			"num": "4",
+			"position": "三",
+			"name": "한동희"
+		},
+		{
+			"num": "5",
+			"position": "一",
+			"name": "고승민"
+		},
+		{
+			"num": "5",
+			"position": "二",
+			"name": "박승욱"
+		},
+		{
+			"num": "6",
+			"position": "지",
+			"name": "전준우"
+		},
+		{
+			"num": "7",
+			"position": "유",
+			"name": "노진혁"
+		},
+		{
+			"num": "8",
+			"position": "포",
+			"name": "유강남"
+		},
+		{
+			"num": "8",
+			"position": "주",
+			"name": "신윤후"
+		},
+		{
+			"num": "8",
+			"position": "포",
+			"name": "정보근"
+		},
+		{
+			"num": "9",
+			"position": "좌",
+			"name": "황성빈"
+		},
+		{
+			"num": "9",
+			"position": "타一",
+			"name": "정훈"
+		}
+	],
+	"pitcher": [
+		{
+			"record": " ",
+			"name": "스트레일리"
+		},
+		{
+			"record": " ",
+			"name": "이태연"
+		},
+		{
+			"record": " ",
+			"name": "이진하"
+		},
+		{
+			"record": " ",
+			"name": "김도규"
+		},
+		{
+			"record": "홀드",
+			"name": "김상수"
+		},
+		{
+			"record": " ",
+			"name": "구승민"
+		},
+		{
+			"record": " ",
+			"name": "이민석"
+		},
+		{
+			"record": " ",
+			"name": "김원중"
+		},
+		{
+			"record": "패",
+			"name": "문경찬"
+		}
+	]
 }

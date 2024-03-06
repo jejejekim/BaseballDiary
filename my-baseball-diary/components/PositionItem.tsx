@@ -84,7 +84,7 @@ const PositionItem = () => {
       <PlayerContainer>
         <OutFielder>
           <LF>{hitters.find((hitter) => hitter.position === "좌").name}</LF>
-          <CF>{hitters.find((hitter) => hitter.position === "중").name}</CF>
+          <CF>{hitters.find((hitter) => hitter.position === "중좌").name}</CF>
           <RF>{hitters.find((hitter) => hitter.position === "우").name}</RF>
         </OutFielder>
         <InFielder>

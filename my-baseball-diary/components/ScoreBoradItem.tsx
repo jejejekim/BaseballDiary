@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Dimensions } from "react-native";
+import { KBOData } from "../KBOData";
 
 const screenWidth = Dimensions.get("window").width;
 const containerWidth = screenWidth - 40;
@@ -81,6 +82,29 @@ const BoxItem = styled.Text`
 const ScoreContents = styled.View``;
 
 const ScoreBoardItem = () => {
+  const awayScore = KBOData.score.away;
+  const homeScore = KBOData.score.home;
+  const awayTeam = KBOData.team.away;
+  const homeTeam = KBOData.team.home;
+  console.log(awayTeam);
+
+  //원정팀 스코어 박스 아이템 렌더링
+  const awayRendering = () => {
+    const result = [];
+    for (let i = 0; i < awayScore.length; i++) {
+      result.push(<BoxItem>{awayScore[i]}</BoxItem>);
+    }
+    return result;
+  };
+  //홈팀 스코어 박스 아이템 렌더링
+  const homeRendering = () => {
+    const result = [];
+    for (let i = 0; i < homeScore.length; i++) {
+      result.push(<BoxItem>{homeScore[i]}</BoxItem>);
+    }
+    return result;
+  };
+
   return (
     <>
       <ScoreHeader>
@@ -102,38 +126,12 @@ const ScoreBoardItem = () => {
       </ScoreHeader>
       <ScoreContents>
         <AwayHeader>
-          <TeamItem>롯데</TeamItem>
-          <ItemContainer>
-            <BoxItem>0</BoxItem>
-            <BoxItem>1</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>1</BoxItem>
-            <BoxItem>2</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>3</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>-</BoxItem>
-            <BoxItem>-</BoxItem>
-            <BoxItem>-</BoxItem>
-          </ItemContainer>
+          <TeamItem>{awayTeam}</TeamItem>
+          <ItemContainer>{awayRendering()}</ItemContainer>
         </AwayHeader>
         <HomeHeader>
-          <TeamItem>한화</TeamItem>
-          <ItemContainer>
-            <BoxItem>1</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>1</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>0</BoxItem>
-            <BoxItem>-</BoxItem>
-            <BoxItem>-</BoxItem>
-            <BoxItem>-</BoxItem>
-          </ItemContainer>
+          <TeamItem>{homeTeam}</TeamItem>
+          <ItemContainer>{homeRendering()}</ItemContainer>
         </HomeHeader>
       </ScoreContents>
     </>

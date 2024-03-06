@@ -24,23 +24,23 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx')
 
 # 페이지가 완전히 로딩되도록 3초동안 기다림
-time.sleep(5)
+time.sleep(15)
 
 #캘린더 버튼 클릭
 driver.find_element(By.XPATH, '//*[@id="contents"]/div[2]/div/img').click()
 #년도 선택
-driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/div/div/select[2]/option[22]').click()
+driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/div/div/select[2]/option[23]').click()
 #달 선택
-driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/div/div/select[1]/option[5]').click()
+driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/div/div/select[1]/option[4]').click()
 #날짜 선택
-driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[4]/td[6]/a').click()
+driver.find_element(By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[1]/td[7]/a').click()
 time.sleep(3)
 
 #팀 선택
-driver.find_element(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]').click()
+driver.find_element(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[1]').click()
 #리뷰 탭 선택
 driver.find_element(By.XPATH, '//*[@id="tabDepth2"]/li[2]/a').click()
-time.sleep(3)
+time.sleep(5)
 
 #구장
 for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[1]/ul/li[1]'):
@@ -50,6 +50,13 @@ for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[
 #시작 시간
 for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[1]/ul/li[2]'):
     start_time = value.text
+
+#토탈 점수
+for value in driver.find_elements(By.XPATH, '//*[@id="tblScordboard3"]/tbody/tr[1]/td[1]'):
+    away_total_score = value.text
+
+for value in driver.find_elements(By.XPATH, '//*[@id="tblScordboard3"]/tbody/tr[2]/td[1]'):
+    home_total_score = value.text
 
 #이닝 점수
 away_score = []
@@ -65,16 +72,16 @@ for index, value in enumerate(home_score_body):
     home_score.append(value.text)
 
 #원정팀
-for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[2]/div[2]/div[1]/div[1]/img'):
+for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[1]/div[2]/div[2]/div[1]/div[1]/img'):
     away_team = value.get_attribute('alt')
 
 #홈팀
-for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[2]/div[2]/div[3]/div[1]/img'):
+for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[1]/div[2]/div[2]/div[3]/div[1]/img'):
     home_team = value.get_attribute('alt')
 
 #야수라인업
 hitter = []
-hitter_table = driver.find_element(By.ID, 'tblHomeHitter1')
+hitter_table = driver.find_element(By.ID, 'tblAwayHitter1')
 hitter_tbody = hitter_table.find_element(By.TAG_NAME, "tbody")
 hitter_rows = hitter_tbody.find_elements(By.TAG_NAME, "tr")
 for index, value in enumerate(hitter_rows):
@@ -85,7 +92,7 @@ for index, value in enumerate(hitter_rows):
 
 #투수라인업
 pitcher = []
-pitcher_table = driver.find_element(By.XPATH, '//*[@id="tblHomePitcher"]')
+pitcher_table = driver.find_element(By.XPATH, '//*[@id="tblAwayPitcher"]')
 pitcher_tbody = pitcher_table.find_element(By.TAG_NAME, "tbody")
 pitcher_rows = pitcher_tbody.find_elements(By.TAG_NAME, "tr")
 for index, value in enumerate(pitcher_rows):
@@ -93,11 +100,10 @@ for index, value in enumerate(pitcher_rows):
     pitcher_name = value.find_elements(By.TAG_NAME, "td")[0].text
     pitcher.append({"record": pitcher_record, "name": pitcher_name})
 
-#모든 정보를 저장할 KBOData 배열
-# KBOdatas = list()
+#모든 정보를 저장하는 KBOData 객체
 KBOData ={
           "startTime": start_time,
-          "score": {"away": away_score, "home": home_score },
+          "score": {"away": away_score, "home": home_score, "awayTotal": away_total_score, "homeTotal": home_total_score },
           "team": {"away": away_team, "home": home_team},
           "hitter": hitter,
           "pitcher": pitcher,
