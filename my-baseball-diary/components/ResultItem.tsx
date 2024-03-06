@@ -85,6 +85,9 @@ const InfoContainer = styled.View`
 export const ResultItem = () => {
   const awayTeam = KBOData.team.away;
   const homeTeam = KBOData.team.home;
+  const awayTotal = KBOData.score.awayTotal;
+  const homeTotal = KBOData.score.homeTotal;
+  const startTime = KBOData.startTime;
 
   return (
     <TeamContainer>
@@ -94,12 +97,12 @@ export const ResultItem = () => {
       </Team>
 
       <ScoreContainer>
-        <Score>7</Score>
+        <Score>{awayTotal}</Score>
         <InfoContainer>
           <WinOrLose>승리요정</WinOrLose>
-          <TimeInfo>10.16(토) 18:30</TimeInfo>
+          <TimeInfo>10.16(토) {startTime}</TimeInfo>
         </InfoContainer>
-        <Score>2</Score>
+        <Score>{homeTotal}</Score>
       </ScoreContainer>
 
       <Team>
