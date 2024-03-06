@@ -24,6 +24,11 @@ const NumItem = styled.Text`
   margin-right: 4px;
 `;
 
+const RecordItem = styled(NumItem)`
+  background-color: ${colors.MAINGREEN};
+  color: ${colors.WHITE};
+`;
+
 const PlayerItem = styled.Text`
   width: 50px;
   background-color: ${colors.GRAYBG};
@@ -78,7 +83,7 @@ export const PitLineUpListItem = () => {
       } else {
         result.push(
           <LineUpItem>
-            <NumItem>{pitcher[i].record}</NumItem>
+            <RecordItem>{pitcher[i].record}</RecordItem>
             <PlayerItem>{pitcher[i].name}</PlayerItem>
           </LineUpItem>
         );

@@ -100,7 +100,7 @@ export const ResultItem = () => {
         <Score>{awayTotal}</Score>
         <InfoContainer>
           <WinOrLose>승리요정</WinOrLose>
-          <TimeInfo>10.16(토) {startTime}</TimeInfo>
+          <TimeInfo>04.01(토) {startTime}</TimeInfo>
         </InfoContainer>
         <Score>{homeTotal}</Score>
       </ScoreContainer>

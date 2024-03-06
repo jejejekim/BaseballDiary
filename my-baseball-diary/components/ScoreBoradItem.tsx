@@ -86,7 +86,6 @@ const ScoreBoardItem = () => {
   const homeScore = KBOData.score.home;
   const awayTeam = KBOData.team.away;
   const homeTeam = KBOData.team.home;
-  console.log(awayTeam);
 
   //원정팀 스코어 박스 아이템 렌더링
   const awayRendering = () => {
