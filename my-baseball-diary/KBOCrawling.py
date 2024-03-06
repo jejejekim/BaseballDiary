@@ -24,7 +24,7 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx')
 
 # 페이지가 완전히 로딩되도록 3초동안 기다림
-time.sleep(15)
+time.sleep(5)
 
 #캘린더 버튼 클릭
 driver.find_element(By.XPATH, '//*[@id="contents"]/div[2]/div/img').click()
@@ -41,6 +41,7 @@ driver.find_element(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[1]').
 #리뷰 탭 선택
 driver.find_element(By.XPATH, '//*[@id="tabDepth2"]/li[2]/a').click()
 time.sleep(5)
+# driver.find_element(By.XPATH, '//*[@id="tabDepth2"]/li[2]/a').click()
 
 #구장
 for value in driver.find_elements(By.XPATH, '//*[@id="contents"]/div[3]/div/div[1]/ul/li[2]/div[1]/ul/li[1]'):
@@ -86,8 +87,8 @@ hitter_tbody = hitter_table.find_element(By.TAG_NAME, "tbody")
 hitter_rows = hitter_tbody.find_elements(By.TAG_NAME, "tr")
 for index, value in enumerate(hitter_rows):
     hitter_num = value.find_elements(By.TAG_NAME, "th")[0].text
-    position = value.find_elements(By.TAG_NAME, "th")[1].text
-    hitter_name = value.find_elements(By.TAG_NAME, "td")[0].text
+    position = value.find_elements(By.TAG_NAME, "th")[1].text[0]
+    hitter_name = value.find_elements(By.TAG_NAME, "td")[0].text[0:3]
     hitter.append({"num": hitter_num, "position": position, "name": hitter_name})
 
 #투수라인업
@@ -96,8 +97,8 @@ pitcher_table = driver.find_element(By.XPATH, '//*[@id="tblAwayPitcher"]')
 pitcher_tbody = pitcher_table.find_element(By.TAG_NAME, "tbody")
 pitcher_rows = pitcher_tbody.find_elements(By.TAG_NAME, "tr")
 for index, value in enumerate(pitcher_rows):
-    pitcher_record = value.find_elements(By.TAG_NAME, "td")[2].text
-    pitcher_name = value.find_elements(By.TAG_NAME, "td")[0].text
+    pitcher_record = value.find_elements(By.TAG_NAME, "td")[2].text[0]
+    pitcher_name = value.find_elements(By.TAG_NAME, "td")[0].text[0:3]
     pitcher.append({"record": pitcher_record, "name": pitcher_name})
 
 #모든 정보를 저장하는 KBOData 객체
